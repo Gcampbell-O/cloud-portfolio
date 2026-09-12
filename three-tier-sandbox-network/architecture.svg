@@ -1,0 +1,94 @@
+<svg viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="960" height="620" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="30" y="34" font-size="20" font-weight="700" fill="#14181F">Three-Tier Sandbox Network</text>
+  <text x="30" y="54" font-size="12" fill="#7A8494">rg-three-tier-lab &#183; eastus</text>
+
+  <!-- Internet -->
+  <ellipse cx="860" cy="90" rx="70" ry="34" fill="#EEF1F4" stroke="#7A8494" stroke-width="1.5"/>
+  <text x="860" y="94" font-size="13" fill="#48525F" text-anchor="middle">Internet</text>
+
+  <!-- VNet outer box -->
+  <rect x="30" y="80" width="780" height="500" rx="10" fill="none" stroke="#2F6FB0" stroke-width="2" stroke-dasharray="6,4"/>
+  <text x="46" y="104" font-size="14" font-weight="600" fill="#2F6FB0">vnet-three-tier &#8212; 10.0.0.0/16</text>
+
+  <!-- AzureBastionSubnet -->
+  <rect x="600" y="120" width="180" height="90" rx="8" fill="#E2ECF7" stroke="#2F6FB0" stroke-width="1.5"/>
+  <text x="614" y="140" font-size="12" font-weight="600" fill="#14181F">AzureBastionSubnet</text>
+  <text x="614" y="156" font-size="11" fill="#48525F">10.0.100.0/26</text>
+  <text x="614" y="176" font-size="12" font-weight="600" fill="#1F4E80">bastion-three-tier</text>
+  <text x="614" y="192" font-size="10" fill="#7A8494">public IP: pip-bastion</text>
+
+  <!-- Internet -> Bastion arrow -->
+  <line x1="820" y1="110" x2="738" y2="120" stroke="#7A8494" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <text x="726" y="100" font-size="10" fill="#7A8494" text-anchor="end">HTTPS 443 only</text>
+
+  <!-- snet-mgmt -->
+  <rect x="600" y="240" width="180" height="110" rx="8" fill="#F5E7DC" stroke="#A8501E" stroke-width="1.5"/>
+  <text x="614" y="260" font-size="12" font-weight="600" fill="#14181F">snet-mgmt</text>
+  <text x="614" y="276" font-size="11" fill="#48525F">10.0.4.0/24</text>
+  <text x="614" y="296" font-size="12" font-weight="600" fill="#8A3D16">vm-jumpbox</text>
+  <text x="614" y="311" font-size="10" fill="#7A8494">10.0.4.4 &#8212; no public IP</text>
+  <text x="614" y="330" font-size="10" fill="#8A3D16">nsg-mgmt: allow 22/3389</text>
+  <text x="614" y="343" font-size="10" fill="#8A3D16">from Bastion subnet only</text>
+
+  <!-- Bastion -> mgmt arrow -->
+  <line x1="690" y1="210" x2="690" y2="240" stroke="#A8501E" stroke-width="1.5" marker-end="url(#arrowRust)"/>
+
+  <!-- snet-web -->
+  <rect x="60" y="140" width="180" height="90" rx="8" fill="#E7EAEF" stroke="#55647A" stroke-width="1.5"/>
+  <text x="74" y="160" font-size="12" font-weight="600" fill="#14181F">snet-web</text>
+  <text x="74" y="176" font-size="11" fill="#48525F">10.0.1.0/24</text>
+  <text x="74" y="196" font-size="10" fill="#48525F">nsg-web (default rules)</text>
+
+  <!-- snet-app -->
+  <rect x="60" y="260" width="180" height="110" rx="8" fill="#E7EAEF" stroke="#55647A" stroke-width="1.5"/>
+  <text x="74" y="280" font-size="12" font-weight="600" fill="#14181F">snet-app</text>
+  <text x="74" y="296" font-size="11" fill="#48525F">10.0.2.0/24</text>
+  <text x="74" y="316" font-size="10" fill="#3E4A5C">nsg-app: allow 443</text>
+  <text x="74" y="329" font-size="10" fill="#3E4A5C">from web only, deny rest</text>
+
+  <!-- web -> app arrow -->
+  <line x1="150" y1="230" x2="150" y2="260" stroke="#55647A" stroke-width="1.5" marker-end="url(#arrowSlate)"/>
+  <text x="158" y="248" font-size="10" fill="#48525F">443</text>
+
+  <!-- snet-data -->
+  <rect x="60" y="400" width="180" height="130" rx="8" fill="#E1F0EA" stroke="#1B7A5E" stroke-width="1.5"/>
+  <text x="74" y="420" font-size="12" font-weight="600" fill="#14181F">snet-data</text>
+  <text x="74" y="436" font-size="11" fill="#48525F">10.0.3.0/24</text>
+  <text x="74" y="456" font-size="10" fill="#146356">nsg-data: allow 1433</text>
+  <text x="74" y="469" font-size="10" fill="#146356">from app only, deny rest</text>
+  <text x="74" y="492" font-size="12" font-weight="600" fill="#146356">pe-storage</text>
+  <text x="74" y="507" font-size="10" fill="#7A8494">10.0.3.4 (private endpoint)</text>
+
+  <!-- app -> data arrow -->
+  <line x1="150" y1="370" x2="150" y2="400" stroke="#1B7A5E" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+  <text x="158" y="388" font-size="10" fill="#146356">1433</text>
+
+  <!-- Storage account outside VNet -->
+  <rect x="330" y="440" width="220" height="90" rx="8" fill="#F5F7F9" stroke="#146356" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="344" y="462" font-size="12" font-weight="600" fill="#14181F">stthreetier089c1b7d</text>
+  <text x="344" y="478" font-size="10" fill="#48525F">Storage Account (Blob)</text>
+  <text x="344" y="494" font-size="10" fill="#8A3D16">public network access: Disabled</text>
+  <text x="344" y="510" font-size="10" fill="#7A8494">privatelink.blob.core.windows.net</text>
+
+  <!-- private endpoint -> storage arrow -->
+  <line x1="240" y1="470" x2="330" y2="480" stroke="#146356" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+  <!-- RBAC legend -->
+  <rect x="330" y="140" width="270" height="150" rx="8" fill="#FFFFFF" stroke="#D7DEE6" stroke-width="1.5"/>
+  <text x="344" y="162" font-size="12" font-weight="600" fill="#14181F">RBAC &#8212; scoped to rg-three-tier-lab</text>
+  <text x="344" y="186" font-size="11" fill="#3E4A5C">netadmin &#8594; Network Contributor</text>
+  <text x="344" y="206" font-size="11" fill="#3E4A5C">vmoperator &#8594; VM Contributor</text>
+  <text x="344" y="226" font-size="11" fill="#3E4A5C">reader &#8594; Reader</text>
+  <text x="344" y="252" font-size="10" fill="#7A8494">Each identity holds only the</text>
+  <text x="344" y="266" font-size="10" fill="#7A8494">access its job function needs.</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#7A8494"/></marker>
+    <marker id="arrowRust" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#A8501E"/></marker>
+    <marker id="arrowSlate" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#55647A"/></marker>
+    <marker id="arrowGreen" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#1B7A5E"/></marker>
+  </defs>
+</svg>

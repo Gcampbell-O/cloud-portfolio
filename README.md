@@ -4,7 +4,7 @@ Hands-on Azure projects built while working toward AZ-104 and SC-500, documentin
 
 ## Projects
 
-- [ ] Three-Tier Sandbox Network (manual build)
+- [x] [Three-Tier Sandbox Network](three-tier-sandbox-network/) (manual build)
 - [ ] IaC Rebuild (Bicep + CI/CD)
 - [ ] Identity Hardening (Entra ID / Conditional Access)
 - [ ] Mini-SOC (Defender for Cloud + Sentinel)
