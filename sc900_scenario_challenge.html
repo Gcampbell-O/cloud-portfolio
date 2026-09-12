@@ -1,0 +1,323 @@
+<title>SC-900 Scenario Challenge</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#EEF1F4; --surface:#FFFFFF; --surface-2:#F5F7F9;
+  --ink:#14181F; --ink-soft:#4C5568; --ink-faint:#7C8598; --border:#D7DCE4;
+  --accent:#A9761F; --accent-ink:#7C5717; --accent-bg:#F3E9D2;
+  --correct:#1E8E52; --correct-bg:#E7F5EC;
+  --incorrect:#C23B3B; --incorrect-bg:#FBEAEA;
+  --dom1:#55647A; --dom1-bg:#E7EAEF;
+  --dom2:#6E4A9E; --dom2-bg:#EFE7F6;
+  --dom3:#B54A1D; --dom3-bg:#F7E9E1;
+  --dom4:#146356; --dom4-bg:#E1EFEC;
+  --shadow:0 1px 2px rgba(20,24,31,.06), 0 6px 16px rgba(20,24,31,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#14171C; --surface:#1C2028; --surface-2:#20242D;
+    --ink:#E8EAED; --ink-soft:#AAB2C0; --ink-faint:#7A8394; --border:#2E3440;
+    --accent:#D4A94A; --accent-ink:#E8C876; --accent-bg:#2E2717;
+    --correct:#4CBE84; --correct-bg:#163326;
+    --incorrect:#E36767; --incorrect-bg:#3A1E1E;
+    --dom1:#8C9BB5; --dom1-bg:#232938;
+    --dom2:#B18FE0; --dom2-bg:#2C2338;
+    --dom3:#E0895A; --dom3-bg:#33241A;
+    --dom4:#4FB59E; --dom4-bg:#17332C;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14171C; --surface:#1C2028; --surface-2:#20242D;
+  --ink:#E8EAED; --ink-soft:#AAB2C0; --ink-faint:#7A8394; --border:#2E3440;
+  --accent:#D4A94A; --accent-ink:#E8C876; --accent-bg:#2E2717;
+  --correct:#4CBE84; --correct-bg:#163326;
+  --incorrect:#E36767; --incorrect-bg:#3A1E1E;
+  --dom1:#8C9BB5; --dom1-bg:#232938;
+  --dom2:#B18FE0; --dom2-bg:#2C2338;
+  --dom3:#E0895A; --dom3-bg:#33241A;
+  --dom4:#4FB59E; --dom4-bg:#17332C;
+  --shadow:0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;}
+body{background:var(--bg); color:var(--ink); font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;}
+.app{max-width:760px; margin:0 auto; padding:2.5rem 1.25rem 4rem;}
+@media (prefers-reduced-motion: reduce){ *{transition-duration:0.001ms !important; animation-duration:0.001ms !important;} }
+
+.masthead{border-bottom:1px solid var(--border); padding-bottom:1.75rem; margin-bottom:1.5rem;}
+.eyebrow{font-family:"IBM Plex Mono",monospace; font-size:.72rem; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); font-weight:600;}
+h1{font-size:clamp(1.6rem,4vw,2.15rem); line-height:1.15; margin:.4rem 0 .6rem; text-wrap:balance; font-weight:700;}
+.lede{color:var(--ink-soft); font-size:.98rem; line-height:1.55; max-width:56ch; margin:0 0 1.5rem;}
+
+.readiness{display:flex; align-items:stretch; gap:1.25rem; background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1.1rem 1.3rem; box-shadow:var(--shadow); flex-wrap:wrap;}
+.readiness-main{flex:1 1 220px; min-width:180px;}
+.readiness-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); font-weight:600; margin-bottom:.45rem;}
+.readiness-track{height:10px; border-radius:6px; background:var(--surface-2); overflow:hidden; border:1px solid var(--border);}
+.readiness-fill{height:100%; background:var(--accent); border-radius:6px; width:0%;}
+.readiness-nums{display:flex; align-items:baseline; gap:.4rem; margin-top:.5rem;}
+.readiness-pct{font-family:"IBM Plex Mono",monospace; font-weight:600; font-size:1.3rem; color:var(--accent-ink);}
+.readiness-frac{font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:.85rem;}
+.readiness-stat{flex:0 0 auto; text-align:center; padding:0 .5rem; border-left:1px solid var(--border);}
+.readiness-stat .num{font-family:"IBM Plex Mono",monospace; font-size:1.3rem; font-weight:600;}
+.readiness-stat .lbl{font-size:.68rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:.06em; margin-top:.2rem;}
+
+.domain-tabs{display:flex; gap:.5rem; flex-wrap:wrap; margin-bottom:1.5rem;}
+.dtab{display:flex; align-items:center; gap:.5rem; border:1px solid var(--border); background:var(--surface); color:var(--ink-soft); padding:.55rem .85rem; border-radius:9px; font-size:.83rem; cursor:pointer; font-weight:500;}
+.dtab .dot{width:9px; height:9px; border-radius:50%; flex:0 0 auto;}
+.dtab .frac{font-family:"IBM Plex Mono",monospace; color:var(--ink-faint); font-size:.78rem;}
+.dtab[aria-selected="true"]{background:var(--surface-2); color:var(--ink); border-color:var(--ink-faint); box-shadow:var(--shadow);}
+.dtab:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+.panel-head{margin-bottom:1rem;}
+.panel-head h2{font-size:1.05rem; margin:0 0 .25rem;}
+.panel-head p{color:var(--ink-faint); font-size:.85rem; margin:0;}
+
+.qlist{display:flex; flex-direction:column; gap:1rem;}
+.qcard{background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--dom-c); border-radius:10px; padding:1.1rem 1.25rem; box-shadow:var(--shadow);}
+.qmeta{display:flex; align-items:center; gap:.6rem; margin-bottom:.55rem;}
+.qnum{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-faint);}
+.qbadge{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.06em; text-transform:uppercase; font-weight:600; padding:.15rem .5rem; border-radius:5px; color:var(--dom-c); background:var(--dom-bg);}
+.qtext{font-size:1rem; font-weight:500; line-height:1.5; margin:0 0 .9rem; text-wrap:balance;}
+
+.options{display:flex; flex-direction:column; gap:.5rem;}
+.opt{display:flex; gap:.6rem; align-items:flex-start; text-align:left; width:100%; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:.65rem .8rem; font-size:.9rem; color:var(--ink); cursor:pointer; font-family:inherit; line-height:1.45;}
+.opt:hover:not(:disabled){border-color:var(--ink-faint);}
+.opt:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+.opt .letter{font-family:"IBM Plex Mono",monospace; font-weight:600; color:var(--ink-faint); flex:0 0 auto;}
+.opt:disabled{cursor:default;}
+.opt.is-correct{background:var(--correct-bg); border-color:var(--correct); color:var(--ink);}
+.opt.is-correct .letter{color:var(--correct);}
+.opt.is-incorrect{background:var(--incorrect-bg); border-color:var(--incorrect); color:var(--ink);}
+.opt.is-incorrect .letter{color:var(--incorrect);}
+.opt.is-muted{opacity:.55;}
+
+.feedback{margin-top:.8rem; padding-top:.8rem; border-top:1px dashed var(--border);}
+.verdict{font-family:"IBM Plex Mono",monospace; font-size:.75rem; font-weight:600; letter-spacing:.04em; text-transform:uppercase; margin-bottom:.4rem;}
+.verdict.correct{color:var(--correct);}
+.verdict.incorrect{color:var(--incorrect);}
+.explain{margin:0; font-size:.88rem; color:var(--ink-soft); line-height:1.55;}
+
+.toolbar{display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:2rem; padding-top:1.25rem; border-top:1px solid var(--border); flex-wrap:wrap;}
+.reset-btn{font-family:"IBM Plex Mono",monospace; font-size:.78rem; background:none; border:1px solid var(--border); color:var(--ink-soft); padding:.5rem .9rem; border-radius:7px; cursor:pointer;}
+.reset-btn:hover{border-color:var(--incorrect); color:var(--incorrect);}
+.hint{font-size:.78rem; color:var(--ink-faint);}
+</style>
+
+<div class="app">
+  <header class="masthead">
+    <div class="eyebrow">SC-900 &middot; Round 2</div>
+    <h1>Scenario Challenge</h1>
+    <p class="lede">30 harder, scenario-style questions — each describes a real situation and asks you to pick the right Microsoft tool or concept, closer to how the actual exam phrases things. Exam in 2 days — make these count.</p>
+    <div class="readiness">
+      <div class="readiness-main">
+        <div class="readiness-label">Readiness</div>
+        <div class="readiness-track"><div class="readiness-fill" id="readinessFill"></div></div>
+        <div class="readiness-nums">
+          <span class="readiness-pct" id="readinessPct">0%</span>
+          <span class="readiness-frac" id="readinessFrac">0 / 30 correct</span>
+        </div>
+      </div>
+      <div class="readiness-stat">
+        <div class="num mono" id="statAnswered">0</div>
+        <div class="lbl">Answered</div>
+      </div>
+      <div class="readiness-stat">
+        <div class="num mono" id="statRemaining">30</div>
+        <div class="lbl">Remaining</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="domain-tabs" id="domainTabs"></nav>
+
+  <div class="panel-head">
+    <h2 id="panelTitle"></h2>
+    <p id="panelDesc"></p>
+  </div>
+
+  <main class="qlist" id="qlist"></main>
+
+  <footer class="toolbar">
+    <button class="reset-btn" id="resetAll">Reset all progress</button>
+    <span class="hint">Progress saves automatically in this browser.</span>
+  </footer>
+</div>
+
+<script>
+const DOMAINS = {
+  d1:{key:"d1", short:"CONCEPTS", name:"Security, Compliance & Identity Concepts", color:"--dom1", bg:"--dom1-bg", desc:"Zero Trust, defense in depth, shared responsibility, encryption, regulatory concepts — applied to scenarios."},
+  d2:{key:"d2", short:"ENTRA", name:"Microsoft Entra", color:"--dom2", bg:"--dom2-bg", desc:"Picking the right Entra capability for a described access, identity, or hybrid scenario."},
+  d3:{key:"d3", short:"SECURITY", name:"Microsoft Security Solutions", color:"--dom3", bg:"--dom3-bg", desc:"Matching Defender/Sentinel/network security tools to real threat and posture scenarios."},
+  d4:{key:"d4", short:"COMPLIANCE", name:"Microsoft Compliance Solutions", color:"--dom4", bg:"--dom4-bg", desc:"Purview and Priva capabilities applied to governance, privacy, and legal scenarios."}
+};
+
+const DATA = [
+{id:"d1-1", domain:"d1", q:"A company wants to ensure that even if an attacker breaches one layer of their defenses (say, the network firewall), they still cannot easily reach sensitive data directly. Which security strategy are they implementing?", options:["Defense in depth","Single sign-on","Federation","Just-in-time access"], correct:0, explain:"Defense in depth layers multiple independent controls so a single breached layer doesn't expose everything behind it."},
+{id:"d1-2", domain:"d1", q:"A company processing EU customer data must ensure it only retains personal data as long as necessary and must honor a customer's request to have their data deleted. Which regulation most directly drives this requirement?", options:["ISO 27001","GDPR","PCI DSS","SOC 2"], correct:1, explain:"GDPR grants individuals rights including erasure and mandates data minimization and retention limits — the others are security/audit frameworks, not personal-data-rights regulations."},
+{id:"d1-3", domain:"d1", q:"An organization is evaluating a fully managed SaaS email provider. Under the shared responsibility model, which of these stays the organization's responsibility even though the provider manages almost everything else?", options:["Patching the underlying operating system","Managing the physical datacenter","Classifying which emails contain sensitive data","Maintaining the network hardware"], correct:2, explain:"Data and information classification always remains the customer's job regardless of service model — OS, physical, and network responsibility shift heavily to the provider under SaaS."},
+{id:"d1-4", domain:"d1", q:"A security team wants every access request evaluated and authenticated on its own merits, rather than trusted simply because it originates from inside the corporate network. Which Zero Trust guiding principle does this describe?", options:["Assume breach","Verify explicitly","Least privilege access","Federated identity"], correct:1, explain:"Verify explicitly means authenticating and authorizing based on all available signals every time, instead of trusting network location alone."},
+{id:"d1-5", domain:"d1", q:"Which statement correctly distinguishes symmetric from asymmetric encryption?", options:["Symmetric uses one shared key for both encryption and decryption; asymmetric uses a linked public/private key pair","Symmetric encryption is only used for hashing passwords","Asymmetric encryption cannot be used to encrypt data, only to sign it","The two terms are interchangeable"], correct:0, explain:"Symmetric encryption relies on a single shared secret key; asymmetric encryption uses a mathematically linked public and private key pair instead."},
+
+{id:"d2-1", domain:"d2", q:"A company wants employees signing in from an unmanaged personal device to automatically be required to complete MFA and be blocked from downloading files, while employees on corporate-managed devices sign in normally. Which capability enables this?", options:["Conditional Access","Password Hash Synchronization","Microsoft Entra Domain Services","Entitlement Management"], correct:0, explain:"Conditional Access evaluates signals like device compliance and applies different access controls (MFA, block downloads) based on the conditions it detects."},
+{id:"d2-2", domain:"d2", q:"An admin needs to grant a contractor Contributor access to a single resource group for exactly 8 hours to finish a migration task, without leaving standing access afterward. What should they use?", options:["Microsoft Entra Privileged Identity Management (PIM)","Conditional Access","Self-Service Password Reset","Microsoft Entra Connect"], correct:0, explain:"PIM provides just-in-time, time-bound activation of a role, exactly fitting a temporary elevated-access need without leaving it permanently assigned."},
+{id:"d2-3", domain:"d2", q:"A retailer wants an external partner organization to sign in to a shared SharePoint site using their own existing corporate credentials, without the retailer creating and managing separate accounts for them. Which feature fits?", options:["Microsoft Entra B2C","Microsoft Entra B2B (External Identities)","Microsoft Entra Domain Services","Microsoft Entra ID Protection"], correct:1, explain:"Entra B2B lets external partners collaborate using their own existing organizational identity, rather than the host company issuing and managing new accounts."},
+{id:"d2-4", domain:"d2", q:"A company wants managers to periodically confirm that each employee's group memberships and app access are still appropriate, with access automatically flagged or removed if not recertified. What should they configure?", options:["Access Reviews","Password Protection","Conditional Access","Identity Protection risk policies"], correct:0, explain:"Access Reviews let organizations periodically recertify access, so unused or no-longer-needed permissions don't silently persist."},
+{id:"d2-5", domain:"d2", q:"A help desk is overwhelmed with password reset tickets. The company wants employees to securely reset their own forgotten passwords using a registered phone number or authenticator app, without calling IT. What should be enabled?", options:["Self-Service Password Reset (SSPR)","Federation with AD FS","Microsoft Entra Domain Services","Entitlement Management"], correct:0, explain:"SSPR lets users verify their identity with pre-registered methods and reset their own password without help desk involvement."},
+{id:"d2-6", domain:"d2", q:"A company with on-premises Active Directory wants Microsoft Entra ID itself to perform authentication (not an on-premises server), and wants sign-in to keep working even if an on-premises authentication component briefly goes offline. Which method best satisfies both requirements?", options:["Federation with AD FS only","Password Hash Synchronization","Smart card authentication alone","Pass-through Authentication with no backup"], correct:1, explain:"Password Hash Synchronization lets Entra ID validate sign-ins independently of on-premises availability, which is exactly why it's often deployed even as a resilient backup alongside PTA or federation."},
+{id:"d2-7", domain:"d2", q:"A company is migrating a legacy application that only supports NTLM authentication to Azure, and wants to avoid deploying and maintaining its own domain controllers. What should they use?", options:["Microsoft Entra Domain Services","Microsoft Entra B2C","Conditional Access","Microsoft Entra Connect"], correct:0, explain:"Entra Domain Services provides managed domain services, including NTLM/Kerberos support, without the organization operating its own domain controllers."},
+{id:"d2-8", domain:"d2", q:"Which of these best describes a strong multi-factor authentication setup?", options:["A password plus a one-time code from an authenticator app (something you know + something you have)","Two different passwords typed one after another","A password plus a security question typed on the same screen","A username plus an email address"], correct:0, explain:"Genuine MFA combines independent factor categories — knowledge and possession here — rather than stacking multiple knowledge-based secrets."},
+{id:"d2-9", domain:"d2", q:"Security wants to reduce weak, easily guessed passwords across both cloud accounts and on-premises Active Directory, including catching leetspeak variations of banned terms like the company name. What should they deploy?", options:["Microsoft Entra Password Protection, extended on-premises with the DC agent and proxy","Conditional Access","Microsoft Entra ID Protection","Self-Service Password Reset"], correct:0, explain:"Entra Password Protection's global and custom banned password lists, using fuzzy matching, extend to on-premises AD via the DC agent and proxy service."},
+
+{id:"d3-1", domain:"d3", q:"A SOC team wants to collect security signals from across their entire hybrid and multicloud environment, correlate them, and automate response actions like disabling a compromised account, using playbooks. Which tool fits?", options:["Microsoft Defender for Cloud","Microsoft Sentinel","Microsoft Intune","Azure Firewall"], correct:1, explain:"Sentinel is the SIEM/SOAR layer — it correlates signals broadly and can trigger automated playbook-driven responses."},
+{id:"d3-2", domain:"d3", q:"An organization wants a single score and a set of prioritized recommendations to improve overall security posture across identity, devices, and data. What should they check?", options:["Microsoft Secure Score","Compliance Manager score","Azure Advisor cost recommendations","Network Watcher topology"], correct:0, explain:"Secure Score aggregates recommended security actions into one score, distinct from Compliance Manager's regulatory-focused scoring."},
+{id:"d3-3", domain:"d3", q:"A company suspects an attacker is performing reconnaissance and lateral movement against their on-premises Active Directory domain controllers. Which Defender product is purpose-built to detect this?", options:["Defender for Identity","Defender for Cloud Apps","Defender for Office 365","Defender for Endpoint"], correct:0, explain:"Defender for Identity uses signals from on-premises domain controllers specifically to detect identity-based attacks like lateral movement and domain reconnaissance."},
+{id:"d3-4", domain:"d3", q:"Employees are uploading company files to unsanctioned personal cloud storage apps IT never approved. Which tool gives visibility into and control over this kind of shadow IT?", options:["Microsoft Defender for Cloud Apps (CASB)","Microsoft Defender for Endpoint","Azure Firewall","Microsoft Sentinel"], correct:0, explain:"Defender for Cloud Apps, as a CASB, discovers shadow IT and lets policies restrict risky SaaS app usage."},
+{id:"d3-5", domain:"d3", q:"A company wants to protect a public-facing web application from SQL injection and cross-site scripting, inspecting traffic at the application layer rather than just filtering by port or IP. What should they deploy?", options:["A Network Security Group (NSG)","A Web Application Firewall (WAF)","Azure DDoS Protection","Microsoft Defender for Identity"], correct:1, explain:"A WAF inspects Layer 7 (application-layer) traffic and blocks common web exploits; an NSG only filters by port/IP/protocol at a lower layer."},
+{id:"d3-6", domain:"d3", q:"An admin needs to enforce compliance policies — like requiring device encryption and a minimum OS version — on both corporate and employee-owned mobile devices accessing company email. What should they use?", options:["Microsoft Intune","Microsoft Sentinel","Azure Firewall","Microsoft Defender for Cloud Apps"], correct:0, explain:"Intune provides mobile device and application management, including compliance policy enforcement across corporate and BYOD devices."},
+{id:"d3-7", domain:"d3", q:"Which best describes what XDR adds compared to several disconnected security point products?", options:["It correlates signals across endpoints, identity, email, and cloud apps into a single incident, revealing the full attack chain","It only scans for viruses on individual laptops","It replaces the need for any human security analyst","It is strictly a compliance reporting feature with no detection capability"], correct:0, explain:"XDR's value is correlation across domains into one incident view, rather than analysts piecing together isolated alerts from separate tools."},
+{id:"d3-8", domain:"d3", q:"A company running workloads across Azure, AWS, and on-premises servers wants one place to continuously assess security configuration (CSPM) and get workload protection recommendations across all of them. What should they use?", options:["Microsoft Defender for Cloud","Microsoft Defender for Office 365","Conditional Access","Microsoft Entra Domain Services"], correct:0, explain:"Defender for Cloud provides CSPM and workload protection across Azure, hybrid, and connected multicloud environments."},
+
+{id:"d4-1", domain:"d4", q:"A legal team has been notified of pending litigation and must preserve emails and documents for several custodians, with a documented workflow including hold notifications and review sets. Which tool fits?", options:["eDiscovery (Standard)","eDiscovery (Premium)","Data Lifecycle Management retention labels alone","Communication Compliance"], correct:1, explain:"eDiscovery Premium adds the full case management workflow — custodian communications, hold notifications, review sets — beyond Standard's basic search and export."},
+{id:"d4-2", domain:"d4", q:"A company wants any document marked Highly Confidential to be automatically encrypted and watermarked, with that protection traveling with the file even if emailed outside the company. What should they configure?", options:["A DLP policy","A sensitivity label","A retention label","An access review"], correct:1, explain:"Sensitivity labels classify and can enforce protection like encryption or watermarking that persists with the content wherever it goes."},
+{id:"d4-3", domain:"d4", q:"A hospital wants to detect if an employee's messages contain harassment or improper sharing of patient data across Teams and email, and route flagged messages to a reviewer. What should they configure?", options:["Communication Compliance","Information Barriers","Insider Risk Management","Data Lifecycle Management"], correct:0, explain:"Communication Compliance scans communications for policy violations like harassment or sensitive data sharing and routes flagged items to reviewers."},
+{id:"d4-4", domain:"d4", q:"An investment bank must legally prevent traders on one desk from communicating or collaborating with research analysts covering the same stocks, to avoid conflicts of interest. What should they configure?", options:["Information Barriers","Communication Compliance","A DLP policy","Conditional Access"], correct:0, explain:"Information Barriers restrict communication and collaboration between specific groups — the standard conflict-of-interest control."},
+{id:"d4-5", domain:"d4", q:"A company wants to identify which departments are hoarding personal customer data far longer than needed, and reduce the risk of that data being over-exposed to too many employees. Which tool addresses this?", options:["Microsoft Purview Insider Risk Management","Microsoft Priva Privacy Risk Management","Microsoft Defender for Cloud Apps","Microsoft Entra ID Protection"], correct:1, explain:"Priva Privacy Risk Management specifically surfaces personal-data risks like hoarding and overexposure — Insider Risk Management focuses on risky user behavior more broadly, not personal-data-specific risk."},
+{id:"d4-6", domain:"d4", q:"A customer emails to request a full export of all personal data a company holds about them, citing their rights under GDPR. Which tool helps the company find and fulfill this request efficiently across Microsoft 365?", options:["Priva Subject Rights Requests","eDiscovery Standard","Compliance Manager","Communication Compliance"], correct:0, explain:"Subject Rights Requests automates discovering and fulfilling data subject access/export/deletion requests specifically."},
+{id:"d4-7", domain:"d4", q:"A company must keep financial records for exactly 7 years and then automatically dispose of them, at the individual document level regardless of which folder they're moved to. What should they apply?", options:["A DLP policy","A retention label","A Network Security Group (NSG)","Information Barriers"], correct:1, explain:"Retention labels apply at the item level and travel with the document, enforcing the retention/disposition schedule regardless of where it's moved."},
+{id:"d4-8", domain:"d4", q:"Before signing with a cloud provider, a company's auditors want to review the provider's independently audited compliance certifications (ISO, SOC 2, etc.) without submitting a formal request each time. Where should they look?", options:["Microsoft Service Trust Portal","Microsoft Defender for Cloud","Azure Policy","Microsoft Purview Data Map"], correct:0, explain:"The Service Trust Portal centralizes Microsoft's audited compliance reports and certifications for customers to review directly."}
+];
+
+const TOTAL = DATA.length;
+const STORE_KEY = "sc900_scenario_v1";
+let progress = {};
+try{ progress = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); }catch(e){ progress = {}; }
+
+let activeDomain = "d1";
+const letters = ["A","B","C","D"];
+
+function save(){
+  try{ localStorage.setItem(STORE_KEY, JSON.stringify(progress)); }catch(e){}
+}
+
+function domainStats(domKey){
+  const qs = DATA.filter(q => q.domain === domKey);
+  let answered = 0, correct = 0;
+  qs.forEach(q => { const p = progress[q.id]; if(p){ answered++; if(p.correct) correct++; } });
+  return {total: qs.length, answered, correct};
+}
+
+function overallStats(){
+  let answered = 0, correct = 0;
+  DATA.forEach(q => { const p = progress[q.id]; if(p){ answered++; if(p.correct) correct++; } });
+  return {total: TOTAL, answered, correct};
+}
+
+function renderTabs(){
+  const nav = document.getElementById("domainTabs");
+  nav.innerHTML = "";
+  Object.values(DOMAINS).forEach(d => {
+    const s = domainStats(d.key);
+    const btn = document.createElement("button");
+    btn.className = "dtab";
+    btn.setAttribute("aria-selected", d.key === activeDomain ? "true" : "false");
+    btn.innerHTML = '<span class="dot" style="background:var(' + d.color + ')"></span>' +
+      '<span>' + d.short + '</span>' +
+      '<span class="frac">' + s.correct + '/' + s.total + '</span>';
+    btn.addEventListener("click", () => { activeDomain = d.key; renderAll(); });
+    nav.appendChild(btn);
+  });
+}
+
+function renderPanelHead(){
+  const d = DOMAINS[activeDomain];
+  document.getElementById("panelTitle").textContent = d.name;
+  document.getElementById("panelDesc").textContent = d.desc;
+}
+
+function renderQuestions(){
+  const list = document.getElementById("qlist");
+  list.innerHTML = "";
+  const qs = DATA.filter(q => q.domain === activeDomain);
+  qs.forEach((q, i) => {
+    const d = DOMAINS[q.domain];
+    const card = document.createElement("div");
+    card.className = "qcard";
+    card.style.setProperty("--dom-c", "var(" + d.color + ")");
+    card.style.setProperty("--dom-bg", "var(" + d.bg + ")");
+
+    const meta = document.createElement("div");
+    meta.className = "qmeta";
+    meta.innerHTML = '<span class="qnum">Q' + String(i+1).padStart(2,"0") + '</span><span class="qbadge">' + d.short + '</span>';
+    card.appendChild(meta);
+
+    const qtext = document.createElement("p");
+    qtext.className = "qtext";
+    qtext.textContent = q.q;
+    card.appendChild(qtext);
+
+    const opts = document.createElement("div");
+    opts.className = "options";
+    const answered = progress[q.id];
+
+    q.options.forEach((optText, idx) => {
+      const b = document.createElement("button");
+      b.className = "opt";
+      b.innerHTML = '<span class="letter">' + letters[idx] + '</span><span>' + optText + '</span>';
+      if(answered){
+        b.disabled = true;
+        if(idx === q.correct) b.classList.add("is-correct");
+        else if(idx === answered.selected) b.classList.add("is-incorrect");
+        else b.classList.add("is-muted");
+      }
+      b.addEventListener("click", () => answer(q, idx, card));
+      opts.appendChild(b);
+    });
+    card.appendChild(opts);
+
+    const fb = document.createElement("div");
+    fb.className = "feedback";
+    fb.hidden = !answered;
+    if(answered){
+      fb.innerHTML = '<div class="verdict ' + (answered.correct ? "correct" : "incorrect") + '">' +
+        (answered.correct ? "Correct" : "Not quite") + '</div>' +
+        '<p class="explain">' + q.explain + '</p>';
+    }
+    card.appendChild(fb);
+
+    list.appendChild(card);
+  });
+}
+
+function answer(q, idx, card){
+  if(progress[q.id]) return;
+  progress[q.id] = {selected: idx, correct: idx === q.correct};
+  save();
+  renderAll();
+}
+
+function renderReadiness(){
+  const s = overallStats();
+  const pct = s.total ? Math.round((s.correct / s.total) * 100) : 0;
+  document.getElementById("readinessFill").style.width = pct + "%";
+  document.getElementById("readinessPct").textContent = pct + "%";
+  document.getElementById("readinessFrac").textContent = s.correct + " / " + s.total + " correct";
+  document.getElementById("statAnswered").textContent = s.answered;
+  document.getElementById("statRemaining").textContent = s.total - s.answered;
+}
+
+function renderAll(){
+  renderTabs();
+  renderPanelHead();
+  renderQuestions();
+  renderReadiness();
+}
+
+document.getElementById("resetAll").addEventListener("click", () => {
+  progress = {};
+  save();
+  renderAll();
+});
+
+renderAll();
+</script>
