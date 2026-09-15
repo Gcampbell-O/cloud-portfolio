@@ -1,0 +1,382 @@
+<title>Cloud & DevOps Mastery Plan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#EBEFF4;
+  --ink:#10151C; --ink-soft:#48525F; --ink-faint:#7A8494; --border:#D7DEE6;
+  --accent:#2F6FB0; --accent-ink:#1F4E80; --accent-bg:#E2ECF7;
+  --done:#1E8E52; --done-bg:#E5F5EB;
+  --p0:#56637A; --p0-bg:#E7EAEF;
+  --p1:#6E4A9E; --p1-bg:#EFE7F6;
+  --p2:#2F6FB0; --p2-bg:#E2ECF7;
+  --p3:#A8501E; --p3-bg:#F5E7DC;
+  --p4:#146356; --p4-bg:#E1EFEC;
+  --p5:#B7862A; --p5-bg:#F3E9D2;
+  --p6:#3A5A8C; --p6-bg:#E4E9F2;
+  --p7:#7A4FA0; --p7-bg:#EEE5F5;
+  --p8:#5C7A3A; --p8-bg:#EAF0E2;
+  --p9:#C23B3B; --p9-bg:#F9E5E5;
+  --p10:#1B7A5E; --p10-bg:#E1F0EA;
+  --parta:#1B7A5E; --partb:#7A4FA0;
+  --shadow:0 1px 2px rgba(16,21,28,.06), 0 6px 16px rgba(16,21,28,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#12151B; --surface:#1A1F27; --surface-2:#1F2530;
+    --ink:#E7EAEF; --ink-soft:#A6AFBC; --ink-faint:#7A8494; --border:#2C333F;
+    --accent:#6FA3DB; --accent-ink:#8FBBEB; --accent-bg:#1E2C3D;
+    --done:#4FBE85; --done-bg:#163326;
+    --p0:#8C97AA; --p0-bg:#232A36;
+    --p1:#B18FE0; --p1-bg:#2C2338;
+    --p2:#6FA3DB; --p2-bg:#1E2C3D;
+    --p3:#DE9163; --p3-bg:#33251A;
+    --p4:#4FB59A; --p4-bg:#173029;
+    --p5:#D4A94A; --p5-bg:#2E2717;
+    --p6:#8CA8D6; --p6-bg:#212B3C;
+    --p7:#C5A6E0; --p7-bg:#2A2136;
+    --p8:#A0C077; --p8-bg:#232C1C;
+    --p9:#E36767; --p9-bg:#3A1E1E;
+    --p10:#4FB59A; --p10-bg:#173029;
+    --parta:#4FB59A; --partb:#C5A6E0;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#12151B; --surface:#1A1F27; --surface-2:#1F2530;
+  --ink:#E7EAEF; --ink-soft:#A6AFBC; --ink-faint:#7A8494; --border:#2C333F;
+  --accent:#6FA3DB; --accent-ink:#8FBBEB; --accent-bg:#1E2C3D;
+  --done:#4FBE85; --done-bg:#163326;
+  --p0:#8C97AA; --p0-bg:#232A36;
+  --p1:#B18FE0; --p1-bg:#2C2338;
+  --p2:#6FA3DB; --p2-bg:#1E2C3D;
+  --p3:#DE9163; --p3-bg:#33251A;
+  --p4:#4FB59A; --p4-bg:#173029;
+  --p5:#D4A94A; --p5-bg:#2E2717;
+  --p6:#8CA8D6; --p6-bg:#212B3C;
+  --p7:#C5A6E0; --p7-bg:#2A2136;
+  --p8:#A0C077; --p8-bg:#232C1C;
+  --p9:#E36767; --p9-bg:#3A1E1E;
+  --p10:#4FB59A; --p10-bg:#173029;
+  --parta:#4FB59A; --partb:#C5A6E0;
+  --shadow:0 1px 2px rgba(0,0,0,.35), 0 6px 18px rgba(0,0,0,.4);
+}
+*{box-sizing:border-box;}
+body{background:var(--bg); color:var(--ink); font-family:"Archivo",system-ui,-apple-system,sans-serif;}
+.mono{font-family:"JetBrains Mono",ui-monospace,Consolas,monospace;}
+.serif{font-family:"Source Serif 4",Georgia,serif;}
+.app{max-width:820px; margin:0 auto; padding:2.25rem 1.25rem 4rem;}
+@media (prefers-reduced-motion: reduce){ *{transition-duration:.001ms !important; animation-duration:.001ms !important;} }
+
+.titleblock{display:flex; flex-wrap:wrap; gap:.3rem 1.1rem; font-family:"JetBrains Mono",monospace; font-size:.66rem; letter-spacing:.05em; text-transform:uppercase; color:var(--ink-faint); border:1px solid var(--border); border-radius:8px; padding:.55rem .8rem; margin-bottom:1.1rem; background:var(--surface);}
+.titleblock span b{color:var(--ink-soft); font-weight:600;}
+
+h1{font-size:clamp(1.55rem,4vw,2.05rem); line-height:1.15; margin:.2rem 0 .5rem; font-weight:700; text-wrap:balance;}
+.lede{font-family:"Source Serif 4",serif; color:var(--ink-soft); font-size:.98rem; line-height:1.6; max-width:62ch; margin:0 0 1.25rem;}
+
+.progresswrap{background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:1rem 1.2rem; box-shadow:var(--shadow); margin-bottom:1.25rem;}
+.progresswrap .label{font-family:"JetBrains Mono",monospace; font-size:.68rem; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-faint); margin-bottom:.5rem;}
+.track{height:10px; border-radius:6px; background:var(--surface-2); border:1px solid var(--border); overflow:hidden; position:relative;}
+.fill{height:100%; background:var(--accent); width:0%; border-radius:6px;}
+.marker{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--parta);}
+.prognums{display:flex; justify-content:space-between; margin-top:.5rem; font-family:"JetBrains Mono",monospace; font-size:.78rem; color:var(--ink-faint);}
+.prognums .pct{color:var(--accent-ink); font-weight:600; font-size:.95rem;}
+
+.rhythm{background:var(--accent-bg); border:1px solid var(--accent); border-left-width:4px; border-radius:10px; padding:1rem 1.2rem; margin-bottom:1.25rem;}
+.rhythm .eyebrow{font-family:"JetBrains Mono",monospace; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; color:var(--accent-ink); font-weight:600; margin-bottom:.55rem;}
+.rhythm-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(115px,1fr)); gap:.5rem;}
+.rhythm-day{background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:.5rem .6rem;}
+.rhythm-day .d{font-family:"JetBrains Mono",monospace; font-size:.68rem; color:var(--accent-ink); font-weight:600;}
+.rhythm-day .t{font-size:.78rem; color:var(--ink-soft); margin-top:.15rem; line-height:1.35;}
+.rhythm-time{margin-top:.7rem; font-size:.83rem; color:var(--ink); font-family:"Source Serif 4",serif;}
+
+.tradeoff{background:var(--p3-bg); border:1px solid var(--p3); border-left-width:4px; border-radius:10px; padding:.9rem 1.1rem; margin-bottom:1.25rem; font-family:"Source Serif 4",serif; font-size:.85rem; color:var(--ink); line-height:1.6;}
+.tradeoff b{font-family:"Archivo",sans-serif; font-weight:600;}
+
+.priorwork{background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:.9rem 1.1rem; margin-bottom:1.25rem; font-size:.85rem; color:var(--ink-soft); font-family:"Source Serif 4",serif; line-height:1.6;}
+.priorwork b{color:var(--ink); font-family:"Archivo",sans-serif; font-weight:600;}
+.priorwork a{color:var(--accent-ink);}
+
+.partdivider{display:flex; align-items:center; gap:.7rem; margin:1.6rem 0 .8rem;}
+.partdivider:first-child{margin-top:0;}
+.partdivider .pbadge{font-family:"JetBrains Mono",monospace; font-size:.72rem; font-weight:700; letter-spacing:.05em; padding:.3rem .65rem; border-radius:7px; color:#fff; flex:0 0 auto;}
+.partdivider.a .pbadge{background:var(--parta);}
+.partdivider.b .pbadge{background:var(--partb);}
+.partdivider .ptext{flex:1;}
+.partdivider .ptext .pt1{font-weight:700; font-size:.98rem;}
+.partdivider .ptext .pt2{font-family:"Source Serif 4",serif; font-size:.82rem; color:var(--ink-soft); margin-top:.1rem; line-height:1.4;}
+
+.phases{display:flex; flex-direction:column; gap:.85rem;}
+.phase{background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--ph-c); border-radius:12px; box-shadow:var(--shadow); overflow:hidden;}
+.phead{display:flex; align-items:center; gap:.8rem; width:100%; background:none; border:none; padding:.9rem 1.1rem; cursor:pointer; text-align:left; font-family:inherit; color:var(--ink);}
+.phead:focus-visible{outline:2px solid var(--accent); outline-offset:-2px;}
+.pchip{font-family:"JetBrains Mono",monospace; font-size:.72rem; font-weight:600; color:var(--ph-c); background:var(--ph-bg); padding:.18rem .5rem; border-radius:6px; flex:0 0 auto;}
+.ptitles{flex:1;}
+.ptitles .pname{font-weight:600; font-size:.98rem;}
+.ptitles .pweeks{font-size:.76rem; color:var(--ink-faint); margin-top:.1rem;}
+.pfrac{font-family:"JetBrains Mono",monospace; font-size:.8rem; color:var(--ink-faint); flex:0 0 auto;}
+.pcaret{flex:0 0 auto; color:var(--ink-faint); transition:transform .15s ease;}
+.phase[data-open="true"] .pcaret{transform:rotate(90deg);}
+.pbody{padding:0 1.1rem 1.1rem;}
+.pbody[hidden]{display:none;}
+.pwhy{font-family:"Source Serif 4",serif; font-size:.87rem; color:var(--ink-soft); line-height:1.55; margin:0 0 .8rem; padding-bottom:.8rem; border-bottom:1px dashed var(--border);}
+
+.weeklist{display:flex; flex-direction:column; gap:.5rem;}
+.week{display:flex; align-items:flex-start; gap:.65rem; width:100%; background:var(--surface-2); border:1px solid var(--border); border-radius:8px; padding:.65rem .8rem; cursor:pointer; font-family:inherit; text-align:left;}
+.week:focus-visible{outline:2px solid var(--accent); outline-offset:1px;}
+.wbox{flex:0 0 auto; width:17px; height:17px; margin-top:.15rem; border:1.5px solid var(--ink-faint); border-radius:4px; display:flex; align-items:center; justify-content:center;}
+.wbox svg{width:10px; height:10px; opacity:0; stroke:var(--surface); stroke-width:3; fill:none;}
+.week.done{background:var(--done-bg); border-color:var(--done);}
+.week.done .wbox{background:var(--done); border-color:var(--done);}
+.week.done .wbox svg{opacity:1;}
+.week.done .wname{color:var(--ink-soft); text-decoration:line-through; text-decoration-color:var(--ink-faint);}
+.wtext{flex:1;}
+.wnum{font-family:"JetBrains Mono",monospace; font-size:.72rem; color:var(--ink-faint); margin-right:.4rem;}
+.wname{font-weight:600; font-size:.87rem; color:var(--ink);}
+.wtag{display:inline-block; font-family:"JetBrains Mono",monospace; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; color:var(--ph-c); background:var(--ph-bg); padding:.1rem .4rem; border-radius:5px; margin-left:.5rem; vertical-align:middle;}
+.wdesc{font-family:"Source Serif 4",serif; font-size:.83rem; color:var(--ink-soft); line-height:1.5; margin:.3rem 0 0;}
+
+.toolbar{display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:2.2rem; padding-top:1.25rem; border-top:1px solid var(--border); flex-wrap:wrap;}
+.reset-btn{font-family:"JetBrains Mono",monospace; font-size:.78rem; background:none; border:1px solid var(--border); color:var(--ink-soft); padding:.5rem .9rem; border-radius:7px; cursor:pointer;}
+.reset-btn:hover{border-color:var(--p9); color:var(--p9);}
+.hint{font-size:.78rem; color:var(--ink-faint);}
+</style>
+
+<div class="app">
+  <div class="titleblock">
+    <span>PLAN: <b>CLOUD &amp; DEVOPS MASTERY</b></span>
+    <span>TARGET: <b>AZ-104 + SC-500, AIM 10 / BUDGET 12</b></span>
+    <span>TIMELINE: <b>23 WEEKS TOTAL, TWO PARTS</b></span>
+    <span>REV: <b>v3.0</b></span>
+  </div>
+
+  <h1>Cloud &amp; DevOps Mastery Plan</h1>
+  <p class="lede">Part A is now compressed to a hard 10 weeks and fully prioritized around AZ-104 and SC-500 &mdash; including Microsoft's own official Defender for Cloud Labs, not improvised exercises. Part B (the broader fundamentals) picks up right after, running in parallel with the job search.</p>
+
+  <div class="progresswrap">
+    <div class="label">Weeks complete</div>
+    <div class="track"><div class="fill" id="fill"></div><div class="marker" id="marker" style="left:43%"></div></div>
+    <div class="prognums"><span class="pct" id="pct">0%</span><span id="frac">0 / 23 weeks</span></div>
+  </div>
+
+  <div class="rhythm">
+    <div class="eyebrow">The weekly rhythm &mdash; applies to every single week below</div>
+    <div class="rhythm-grid">
+      <div class="rhythm-day"><div class="d">DAY 1</div><div class="t">Concept &amp; architecture &mdash; no coding yet. Understand the "why" before touching a keyboard.</div></div>
+      <div class="rhythm-day"><div class="d">DAY 2&ndash;4</div><div class="t">Build it, hands-on, in your own environment. Same explain-then-do style as every project so far.</div></div>
+      <div class="rhythm-day"><div class="d">DAY 5</div><div class="t">Deliberately break something you built. Diagnose it. Fix it yourself.</div></div>
+      <div class="rhythm-day"><div class="d">DAY 6</div><div class="t">Cold interview questions on the week, no notes &mdash; then document and push to GitHub.</div></div>
+      <div class="rhythm-day"><div class="d">DAY 7</div><div class="t">Off, or catch-up buffer if the week ran long. Rest is part of the plan, not a failure to keep it.</div></div>
+    </div>
+    <div class="rhythm-time">Daily time: <b>~2&ndash;2.5 hrs, Mon&ndash;Fri</b> &middot; <b>~1&ndash;1.5 hrs Saturday</b> &middot; Sunday off &mdash; <b>~13&ndash;14 hrs/week</b>.</div>
+  </div>
+
+  <div class="tradeoff">
+    <b>Honest note on the compression:</b> going from 12 to 10 weeks in Part A meant real trims, not just tighter scheduling &mdash; worth knowing exactly where. Linux (previously 2 weeks) is now 1, covering only what's needed to administer the jump-box VM and pass AZ-104's VM questions; deeper shell scripting is pushed into Part B instead of padding this week. Monitoring and the Mini-SOC (previously 3 weeks) are now 2, made possible by using Microsoft's own pre-built Defender for Cloud Labs instead of improvised exercises &mdash; they're simply better-scoped than what I'd build from scratch. Purview and the portfolio push (previously 2 separate weeks) are now combined into 1, since the documentation habit is automatic by that point. If any single week feels rushed once you're in it, take the extra day &mdash; Day 7 buffer exists for exactly this.
+    <br><br>
+    <b>Aim for 10 weeks, budget for 12.</b> 10 is the pace to actually try for; 12 is the realistic range given how often genuinely new topics here have hit real friction (MFA/Security Defaults, SKU errors, quoting bugs, a silent save conflict — none of it your fault, all of it normal). Weeks 1, 3, and 8&ndash;9 are the most likely to run long. Missing week 10 by a week or two is not a failure of the plan &mdash; finishing with real understanding is the actual goal, not the calendar.
+  </div>
+
+  <div class="priorwork">
+    <b>Already banked before this plan starts:</b> Project 1 &mdash; Three-Tier Sandbox Network, built entirely by hand with the Azure CLI. Project 2 &mdash; the same network rebuilt in Bicep (storage/private endpoint/RBAC done, CI/CD pipeline is Week 1 below). SC-900 exam: <b>passed, 836/1000</b>. Full history and diagrams live in the original <a href="https://claude.ai/code/artifact/bd2180b3-58b7-475b-a86f-93f21cdd03bf">Cloud Portfolio Build</a> roadmap.
+  </div>
+
+  <div id="phases"></div>
+
+  <footer class="toolbar">
+    <button class="reset-btn" id="resetAll">Reset all progress</button>
+    <span class="hint">Progress saves automatically in this browser.</span>
+  </footer>
+</div>
+
+<script>
+const PHASES = [
+{id:"a0", part:"A", chip:"PART A · 1", title:"Close the Loop, With Real Git Depth", weeks:"Week 1", color:"--p0", bg:"--p0-bg",
+ why:"Finish Project 2 before adding anything new — and a real pull-request-based pipeline is the natural way to get genuine depth on git branching, rather than a bolted-on separate week for it.",
+ items:[
+  {n:1, tag:"AZ-104 / CI-CD", name:"Bicep CI/CD pipeline + real git depth", desc:"GitHub Actions: plan-on-PR, apply-on-merge, OIDC federated credentials (no stored secrets), remote-state discussion, final README. Practiced through actual pull requests, so branching, a deliberately-created merge conflict, rebase, and stash all get real reps in the same week."}
+ ]},
+{id:"a1", part:"A", chip:"PART A · 2", title:"Networking & Linux (trimmed)", weeks:"Weeks 2–3", color:"--p1", bg:"--p1-bg",
+ why:"Direct AZ-104 networking and compute domains. Linux is deliberately compressed to one focused week here — see the note above on where that time went.",
+ items:[
+  {n:2, tag:"AZ-104", name:"Networking 101, from zero", desc:"OSI/TCP-IP model, IP addressing beyond CIDR, DNS resolution, common ports/protocols, firewall concepts. Hands-on: ping, traceroute, nslookup, Test-NetConnection against your own VM and public services."},
+  {n:3, tag:"AZ-104", name:"Linux fundamentals, the practical slice", desc:"Filesystem navigation, permissions, package management, and a proper SSH walkthrough — done directly on the jump-box VM. Just enough to administer a Linux VM confidently and answer AZ-104's Linux questions; deeper shell scripting is intentionally deferred to Part B."}
+ ]},
+{id:"a2", part:"A", chip:"PART A · 3", title:"Storage & Compute, Rounded Out", weeks:"Week 4", color:"--p2", bg:"--p2-bg",
+ why:"Project 1/2 went deep on VMs and one storage account — this fills the rest of what AZ-104's storage and compute domains actually test.",
+ items:[
+  {n:4, tag:"AZ-104", name:"Storage & compute deepening", desc:"Azure Files vs Blob, storage redundancy options (LRS/ZRS/GRS), blob lifecycle management, Azure App Service (a web app with no VM to manage), VM Scale Sets and Load Balancer basics."}
+ ]},
+{id:"a3", part:"A", chip:"PART A · 4", title:"Identity, Deep — Plus Key Vault", weeks:"Weeks 5–6", color:"--p3", bg:"--p3-bg",
+ why:"Project 3 from the original roadmap — Identity Hardening — mapping directly onto AZ-104's identity domain and SC-500's identity security domain, with Key Vault as the natural security-adjacent companion.",
+ items:[
+  {n:5, tag:"AZ-104 / SC-500", name:"Conditional Access, for real", desc:"Enable the free 30-day Entra ID P2 trial. Build real policies (block legacy auth, require MFA, require a compliant device) — then deliberately misconfigure one and diagnose the resulting lockout yourself."},
+  {n:6, tag:"AZ-104 / SC-500", name:"PIM, Access Reviews, SSPR, Key Vault", desc:"Time-bound role activation, periodic access recertification, self-service password reset — then Azure Key Vault: store a secret/certificate and reference it from a Bicep deployment instead of hardcoding a value. Document as \"Identity Hardening,\" publish to GitHub."}
+ ]},
+{id:"a4", part:"A", chip:"PART A · 5", title:"Monitoring", weeks:"Week 7", color:"--p4", bg:"--p4-bg",
+ why:"Direct AZ-104 monitor-and-maintain domain, and the foundation the Mini-SOC sits on next.",
+ items:[
+  {n:7, tag:"AZ-104", name:"Azure Monitor / Log Analytics", desc:"Finally finish the forked azure-monitor-lab properly — now with real Linux and networking grounding to actually understand what it's teaching."}
+ ]},
+{id:"a5", part:"A", chip:"PART A · 6", title:"Mini-SOC — Official Microsoft Labs", weeks:"Weeks 8–9", color:"--p9", bg:"--p9-bg",
+ why:"Project 4 from the original roadmap, now built on Microsoft's own official Defender for Cloud Labs (github.com/Azure/Microsoft-Defender-for-Cloud) instead of improvised exercises — genuinely better-scoped, and a verifiable, citable credential in its own right.",
+ items:[
+  {n:8, tag:"SC-500", name:"Defender for Cloud: posture & protection", desc:"Official lab Modules 1–2 (environment setup, dashboard/secure score), 3–4 (security policy via Azure Policy, regulatory compliance dashboard), 8 (Defender for Servers Plan 2, just-in-time VM access, adaptive application control), and 17 (Defender CSPM, attack path analysis, Cloud Security Explorer)."},
+  {n:9, tag:"SC-500", name:"Alerts, Sentinel & incident response", desc:"Official lab Module 6 (alert validation/suppression, Graph Security API) and Module 7 (continuous export, Sentinel integration) — then the capstone: simulate a suspicious sign-in, investigate it end-to-end in Sentinel, write it up with screenshots, publish it. (The remaining ~20 modules — multicloud connectors, container posture, DevOps security, AI workload security — are excellent optional depth for later, not required for this pass.)"}
+ ]},
+{id:"a6", part:"A", chip:"PART A · 7", title:"Purview & Start Applying", weeks:"Week 10", color:"--p10", bg:"--p10-bg",
+ why:"The last SC-500 domain plus the actual point of this whole reorder: a complete, cert-aligned portfolio in 10 weeks, with applications going out immediately after.",
+ items:[
+  {n:10, tag:"SC-500 / Portfolio", name:"Purview project + start applying", desc:"A DLP policy protecting mock data (or the DSPM-for-AI angle if Azure OpenAI access is available), documented and published — then straight into portfolio polish: every README reviewed, LinkedIn and resume updated around all of Part A, and applications going out. Part B continues in parallel, not before it."}
+ ]},
+{id:"b0", part:"B", chip:"PART B · 1", title:"Containers", weeks:"Weeks 11–12", color:"--p2", bg:"--p2-bg",
+ why:"Not tested on AZ-104/SC-500 directly, but the substrate Kubernetes needs later, and a near-universal real-world skill.",
+ items:[
+  {n:11, tag:"Docker", name:"Docker fundamentals, from zero", desc:"Images vs containers, Dockerfile, core docker CLI. Deliverable: containerize a simple web app."},
+  {n:12, tag:"Docker", name:"Compose, volumes, ACR, deploy", desc:"Docker Compose for multi-container apps, volumes for persistence, push/pull from Azure Container Registry, then deploy the container to Azure Container Instances or App Service for Containers."}
+ ]},
+{id:"b1", part:"B", chip:"PART B · 2", title:"Databases", weeks:"Week 13", color:"--p4", bg:"--p4-bg",
+ why:"Genuinely new ground — and with Part A's Azure fluency already built, deploying and connecting a real database moves faster than it would have earlier.",
+ items:[
+  {n:13, tag:"SQL", name:"SQL fundamentals + Azure SQL, live", desc:"CRUD, joins, indexes, basic normalization — then deploy Azure SQL Database or PostgreSQL Flexible Server, connect a small app to it, and practice backup/restore."}
+ ]},
+{id:"b2", part:"B", chip:"PART B · 3", title:"Python & APIs", weeks:"Weeks 14–16", color:"--p5", bg:"--p5-bg",
+ why:"Real Python fundamentals first, not snippets — then APIs, then using that Python knowledge to automate exactly what you've already done by hand via the CLI.",
+ items:[
+  {n:14, tag:"Python", name:"Python fundamentals, from zero", desc:"Variables, functions, control flow, lists/dicts, error handling — real small programs, not copy-pasted snippets."},
+  {n:15, tag:"APIs", name:"APIs: requests, then Azure's own", desc:"The requests library against a public API first, then Azure's REST API directly, then the Azure SDK for Python as the higher-level wrapper around that same API."},
+  {n:16, tag:"Automation", name:"Automate what you've done by hand", desc:"Rewrite the health-check / tagging / backup style tasks you've already run manually via az CLI, now as Python using the Azure SDK."}
+ ]},
+{id:"b3", part:"B", chip:"PART B · 4", title:"IaC, Round Two", weeks:"Weeks 17–18", color:"--p6", bg:"--p6-bg",
+ why:"Terraform is the industry's most common IaC tool alongside Bicep — rebuilding the exact same network a third time makes the contrast completely concrete.",
+ items:[
+  {n:17, tag:"Terraform", name:"Terraform fundamentals", desc:"Providers, resources, state, variables. Deliverable: rebuild the same three-tier network for a third time — CLI, then Bicep, now Terraform."},
+  {n:18, tag:"Terraform", name:"Modules, remote state, CI/CD", desc:"Modularize the Terraform project, configure remote state in an Azure Storage backend, and wire Terraform into the GitHub Actions pipeline from Part A."}
+ ]},
+{id:"b4", part:"B", chip:"PART B · 5", title:"Kubernetes / AKS", weeks:"Weeks 19–21", color:"--p7", bg:"--p7-bg",
+ why:"The standard runtime for modern applications and a heavily-weighted real-world skill — makes sense now that Docker is already solid.",
+ items:[
+  {n:19, tag:"Kubernetes", name:"Kubernetes fundamentals, from zero", desc:"Local Minikube cluster. Pods, Deployments, Services, YAML manifests."},
+  {n:20, tag:"AKS", name:"Azure Kubernetes Service, live", desc:"Create a real managed AKS cluster, deploy the app from Part B into it, configure ingress, ConfigMaps, and Secrets."},
+  {n:21, tag:"AKS / CI-CD", name:"Helm, and CI/CD to AKS", desc:"Package the app with Helm, then deploy to AKS automatically from the GitHub Actions pipeline built earlier."}
+ ]},
+{id:"b5", part:"B", chip:"PART B · 6", title:"Configuration Management", weeks:"Week 22", color:"--p8", bg:"--p8-bg",
+ why:"Terraform provisions infrastructure; Ansible configures what's running on it — the two genuinely complement each other in real pipelines.",
+ items:[
+  {n:22, tag:"Ansible", name:"Ansible fundamentals", desc:"Inventory, playbooks, modules. Deliverable: provision a VM with Terraform, then immediately auto-configure it with an Ansible playbook run right after."}
+ ]},
+{id:"b6", part:"B", chip:"PART B · 7", title:"Final Wrap-Up", weeks:"Week 23", color:"--p10", bg:"--p10-bg",
+ why:"Turning the full stretch of real work into something a recruiter can evaluate in minutes.",
+ items:[
+  {n:23, tag:"Portfolio", name:"Full portfolio polish & mock interviews", desc:"Every project's README reviewed one more time, LinkedIn and resume given a final pass, and a full cold mock-interview round across every single project built across both parts."}
+ ]}
+];
+
+const TOTAL = PHASES.reduce((sum,p)=>sum+p.items.length,0);
+const PART_A_TOTAL = PHASES.filter(p=>p.part==="A").reduce((sum,p)=>sum+p.items.length,0);
+const STORE_KEY = "mastery_plan_v3";
+let done = {};
+try{ done = JSON.parse(localStorage.getItem(STORE_KEY) || "{}"); }catch(e){ done = {}; }
+let openState = {a0:true};
+
+const PART_LABELS = {
+  A: {title:"Part A — AZ-104 / SC-500 Core", sub:"Weeks 1–10. Everything the two certs actually test, front-loaded and compressed. Ends with a real portfolio and applications going out."},
+  B: {title:"Part B — Extended Engineering Fundamentals", sub:"Weeks 11–23. Docker, Kubernetes, Terraform, Ansible, SQL, Python/APIs — deepened while you're already interviewing."}
+};
+
+function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(done)); }catch(e){} }
+
+function phaseCount(p){
+  let complete = 0;
+  p.items.forEach(it => { if(done[p.id+"-"+it.n]) complete++; });
+  return {total: p.items.length, complete};
+}
+
+function renderProgress(){
+  let complete = 0;
+  PHASES.forEach(p => p.items.forEach(it => { if(done[p.id+"-"+it.n]) complete++; }));
+  const pct = TOTAL ? Math.round((complete/TOTAL)*100) : 0;
+  document.getElementById("fill").style.width = pct + "%";
+  document.getElementById("pct").textContent = pct + "%";
+  document.getElementById("frac").textContent = complete + " / " + TOTAL + " weeks";
+  document.getElementById("marker").style.left = Math.round((PART_A_TOTAL/TOTAL)*100) + "%";
+}
+
+function renderPhases(){
+  const wrap = document.getElementById("phases");
+  wrap.innerHTML = "";
+  let lastPart = null;
+  PHASES.forEach(p => {
+    if(p.part !== lastPart){
+      const div = document.createElement("div");
+      div.className = "partdivider " + p.part.toLowerCase();
+      const lbl = PART_LABELS[p.part];
+      div.innerHTML = '<span class="pbadge">' + (p.part==="A" ? "PART A" : "PART B") + '</span>' +
+        '<span class="ptext"><div class="pt1">' + lbl.title + '</div><div class="pt2">' + lbl.sub + '</div></span>';
+      wrap.appendChild(div);
+      lastPart = p.part;
+    }
+
+    const c = phaseCount(p);
+    const card = document.createElement("div");
+    card.className = "phase";
+    card.style.setProperty("--ph-c","var(" + p.color + ")");
+    card.style.setProperty("--ph-bg","var(" + p.bg + ")");
+    card.dataset.open = openState[p.id] ? "true" : "false";
+
+    const head = document.createElement("button");
+    head.className = "phead";
+    head.innerHTML =
+      '<span class="pchip">' + p.chip + '</span>' +
+      '<span class="ptitles"><div class="pname">' + p.title + '</div><div class="pweeks">' + p.weeks + '</div></span>' +
+      '<span class="pfrac">' + c.complete + '/' + c.total + '</span>' +
+      '<span class="pcaret">&#9656;</span>';
+    head.addEventListener("click", () => { openState[p.id] = !openState[p.id]; renderPhases(); });
+    card.appendChild(head);
+
+    const body = document.createElement("div");
+    body.className = "pbody";
+    body.hidden = !openState[p.id];
+
+    const why = document.createElement("p");
+    why.className = "pwhy";
+    why.textContent = p.why;
+    body.appendChild(why);
+
+    const list = document.createElement("div");
+    list.className = "weeklist";
+    p.items.forEach(it => {
+      const id = p.id + "-" + it.n;
+      const btn = document.createElement("button");
+      btn.className = "week" + (done[id] ? " done" : "");
+      btn.innerHTML =
+        '<span class="wbox"><svg viewBox="0 0 10 10"><polyline points="1,5 4,8 9,1"/></svg></span>' +
+        '<span class="wtext">' +
+          '<span class="wnum">WK ' + String(it.n).padStart(2,"0") + '</span>' +
+          '<span class="wname">' + it.name + '</span>' +
+          '<span class="wtag">' + it.tag + '</span>' +
+          '<p class="wdesc">' + it.desc + '</p>' +
+        '</span>';
+      btn.addEventListener("click", () => {
+        done[id] = !done[id];
+        save();
+        renderPhases();
+        renderProgress();
+      });
+      list.appendChild(btn);
+    });
+    body.appendChild(list);
+    card.appendChild(body);
+    wrap.appendChild(card);
+  });
+}
+
+document.getElementById("resetAll").addEventListener("click", () => {
+  done = {};
+  save();
+  renderPhases();
+  renderProgress();
+});
+
+renderPhases();
+renderProgress();
+</script>
