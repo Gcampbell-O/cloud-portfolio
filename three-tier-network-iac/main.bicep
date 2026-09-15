@@ -118,6 +118,9 @@ resource nsgMgmt 'Microsoft.Network/networkSecurityGroups@2023-11-01' = {
 resource vnet 'Microsoft.Network/virtualNetworks@2023-11-01' = {
   name: 'vnet-three-tier'
   location: location
+    tags: {
+    environment: 'lab'
+  }
   properties: {
     addressSpace: {
       addressPrefixes: [
