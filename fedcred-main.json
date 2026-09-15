@@ -1,6 +1,6 @@
 {
   "name": "github-main-branch",
   "issuer": "https://token.actions.githubusercontent.com",
-  "subject": "repo:Gcampbell-O/cloud-portfolio:ref:refs/heads/main",
+  "subject": "repo:Gcampbell-O@322574539/cloud-portfolio@1366516898:ref:refs/heads/main",
   "audiences": ["api://AzureADTokenExchange"]
 }

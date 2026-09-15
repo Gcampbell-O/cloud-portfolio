@@ -1,6 +1,6 @@
 {
   "name": "github-pr",
   "issuer": "https://token.actions.githubusercontent.com",
-  "subject": "repo:Gcampbell-O/cloud-portfolio:pull_request",
+  "subject": "repo:Gcampbell-O@322574539/cloud-portfolio@1366516898:pull_request",
   "audiences": ["api://AzureADTokenExchange"]
 }
