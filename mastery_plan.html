@@ -174,6 +174,8 @@ h1{font-size:clamp(1.55rem,4vw,2.05rem); line-height:1.15; margin:.2rem 0 .5rem;
     <b>Honest note on the compression:</b> going from 12 to 10 weeks in Part A meant real trims, not just tighter scheduling &mdash; worth knowing exactly where. Linux (previously 2 weeks) is now 1, covering only what's needed to administer the jump-box VM and pass AZ-104's VM questions; deeper shell scripting is pushed into Part B instead of padding this week. Monitoring and the Mini-SOC (previously 3 weeks) are now 2, made possible by using Microsoft's own pre-built Defender for Cloud Labs instead of improvised exercises &mdash; they're simply better-scoped than what I'd build from scratch. Purview and the portfolio push (previously 2 separate weeks) are now combined into 1, since the documentation habit is automatic by that point. If any single week feels rushed once you're in it, take the extra day &mdash; Day 7 buffer exists for exactly this.
     <br><br>
     <b>Aim for 10 weeks, budget for 12.</b> 10 is the pace to actually try for; 12 is the realistic range given how often genuinely new topics here have hit real friction (MFA/Security Defaults, SKU errors, quoting bugs, a silent save conflict — none of it your fault, all of it normal). Weeks 1, 3, and 8&ndash;9 are the most likely to run long. Missing week 10 by a week or two is not a failure of the plan &mdash; finishing with real understanding is the actual goal, not the calendar.
+    <br><br>
+    <b>Sprint window: Sep 16&ndash;28, before the new job starts Sep 29.</b> ~5&ndash;6 hrs/day available (morning block reliable, post-gym hours as a bonus, not guaranteed). Budget target: finish through <b>Week 6</b> (Identity) by the 28th. Stretch/aim target: also finish <b>Week 7</b> (Monitoring). Weeks 8&ndash;10 (Mini-SOC, Purview, start applying) continue from the 29th onward at the normal part-time pace, worked around the job &mdash; deliberately not rushed, since those two projects are worth taking real time on.
   </div>
 
   <div class="priorwork">
@@ -204,7 +206,7 @@ const PHASES = [
 {id:"a2", part:"A", chip:"PART A · 3", title:"Storage & Compute, Rounded Out", weeks:"Week 4", color:"--p2", bg:"--p2-bg",
  why:"Project 1/2 went deep on VMs and one storage account — this fills the rest of what AZ-104's storage and compute domains actually test.",
  items:[
-  {n:4, tag:"AZ-104", name:"Storage & compute deepening", desc:"Azure Files vs Blob, storage redundancy options (LRS/ZRS/GRS), blob lifecycle management, Azure App Service (a web app with no VM to manage), VM Scale Sets and Load Balancer basics."}
+  {n:4, tag:"AZ-104", name:"Storage & compute deepening", desc:"Azure Files vs Blob, storage redundancy options (LRS/ZRS/GRS), blob lifecycle management, Azure App Service (a web app with no VM to manage), VM Scale Sets and Load Balancer basics. Plus governance basics validated against a real AZ-104 portfolio (handsoncert.com): Azure Policy (assignments and initiatives), resource tags, and management group hierarchy."}
  ]},
 {id:"a3", part:"A", chip:"PART A · 4", title:"Identity, Deep — Plus Key Vault", weeks:"Weeks 5–6", color:"--p3", bg:"--p3-bg",
  why:"Project 3 from the original roadmap — Identity Hardening — mapping directly onto AZ-104's identity domain and SC-500's identity security domain, with Key Vault as the natural security-adjacent companion.",
@@ -215,7 +217,7 @@ const PHASES = [
 {id:"a4", part:"A", chip:"PART A · 5", title:"Monitoring", weeks:"Week 7", color:"--p4", bg:"--p4-bg",
  why:"Direct AZ-104 monitor-and-maintain domain, and the foundation the Mini-SOC sits on next.",
  items:[
-  {n:7, tag:"AZ-104", name:"Azure Monitor / Log Analytics", desc:"Finally finish the forked azure-monitor-lab properly — now with real Linux and networking grounding to actually understand what it's teaching."}
+  {n:7, tag:"AZ-104", name:"Azure Monitor / Log Analytics + KQL + Backup", desc:"Finally finish the forked azure-monitor-lab properly — now with real Linux and networking grounding to actually understand what it's teaching. Plus two real gaps closed: KQL (Kusto Query Language) basics — the actual query language behind Log Analytics and, later, Sentinel's analytics rules — and Azure Backup / Site Recovery fundamentals, both surfaced by cross-checking against a real AZ-104 portfolio (handsoncert.com)."}
  ]},
 {id:"a5", part:"A", chip:"PART A · 6", title:"Mini-SOC — Official Microsoft Labs", weeks:"Weeks 8–9", color:"--p9", bg:"--p9-bg",
  why:"Project 4 from the original roadmap, now built on Microsoft's own official Defender for Cloud Labs (github.com/Azure/Microsoft-Defender-for-Cloud) instead of improvised exercises — genuinely better-scoped, and a verifiable, citable credential in its own right.",

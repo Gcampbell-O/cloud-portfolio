@@ -1,0 +1,6 @@
+#cloud-config
+package_upgrade: true
+packages:
+  - nginx
+runcmd:
+  - echo "Hello from $(hostname)" > /var/www/html/index.html
