@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "dbPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/089c1b7d-dac0-40b1-86bc-ea5526977d75/resourceGroups/rg-keyvault-lab/providers/Microsoft.KeyVault/vaults/kv-lab-8126"
+        },
+        "secretName": "dbPassword"
+      }
+    }
+  }
+}
