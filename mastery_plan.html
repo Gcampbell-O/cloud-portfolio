@@ -145,8 +145,8 @@ h1{font-size:clamp(1.55rem,4vw,2.05rem); line-height:1.15; margin:.2rem 0 .5rem;
   <div class="titleblock">
     <span>PLAN: <b>CLOUD &amp; DEVOPS MASTERY</b></span>
     <span>TARGET: <b>AZ-104 + SC-500, AIM 10 / BUDGET 12</b></span>
-    <span>TIMELINE: <b>23 WEEKS TOTAL, TWO PARTS</b></span>
-    <span>REV: <b>v3.0</b></span>
+    <span>TIMELINE: <b>24 WEEKS TOTAL, TWO PARTS</b></span>
+    <span>REV: <b>v3.1</b></span>
   </div>
 
   <h1>Cloud &amp; DevOps Mastery Plan</h1>
@@ -155,7 +155,7 @@ h1{font-size:clamp(1.55rem,4vw,2.05rem); line-height:1.15; margin:.2rem 0 .5rem;
   <div class="progresswrap">
     <div class="label">Weeks complete</div>
     <div class="track"><div class="fill" id="fill"></div><div class="marker" id="marker" style="left:43%"></div></div>
-    <div class="prognums"><span class="pct" id="pct">0%</span><span id="frac">0 / 23 weeks</span></div>
+    <div class="prognums"><span class="pct" id="pct">0%</span><span id="frac">0 / 24 weeks</span></div>
   </div>
 
   <div class="rhythm">
@@ -230,46 +230,51 @@ const PHASES = [
  items:[
   {n:10, tag:"SC-500 / Portfolio", name:"Purview project + start applying", desc:"A DLP policy protecting mock data (or the DSPM-for-AI angle if Azure OpenAI access is available), documented and published — then straight into portfolio polish: every README reviewed, LinkedIn and resume updated around all of Part A, and applications going out. Part B continues in parallel, not before it."}
  ]},
-{id:"b0", part:"B", chip:"PART B · 1", title:"Containers", weeks:"Weeks 11–12", color:"--p2", bg:"--p2-bg",
+{id:"b0shell", part:"B", chip:"PART B · 1", title:"Shell Scripting for Automation", weeks:"Week 11", color:"--p1", bg:"--p1-bg",
+ why:"Deferred from Part A's compressed Linux week, and worth doing properly rather than picking it up by accident — real shell scripting is core to security admin work: automating routine tasks, parsing logs during an investigation, and writing repeatable remediation scripts instead of one-off commands typed under pressure.",
+ items:[
+  {n:11, tag:"Linux", name:"Shell scripting, from zero", desc:"Variables, control flow (if/else, loops), functions, script files vs one-off commands, argument handling ($1/$@), exit codes and basic error handling (set -e). Text processing for real investigative work: grep, awk, sed, cut against log files. Capstone: write an actual security-admin-style script — an account/permissions audit, or a failed-login report parsed from auth logs — not a toy exercise."}
+ ]},
+{id:"b0", part:"B", chip:"PART B · 2", title:"Containers", weeks:"Weeks 12–13", color:"--p2", bg:"--p2-bg",
  why:"Not tested on AZ-104/SC-500 directly, but the substrate Kubernetes needs later, and a near-universal real-world skill.",
  items:[
-  {n:11, tag:"Docker", name:"Docker fundamentals, from zero", desc:"Images vs containers, Dockerfile, core docker CLI. Deliverable: containerize a simple web app."},
-  {n:12, tag:"Docker", name:"Compose, volumes, ACR, deploy", desc:"Docker Compose for multi-container apps, volumes for persistence, push/pull from Azure Container Registry, then deploy the container to Azure Container Instances or App Service for Containers."}
+  {n:12, tag:"Docker", name:"Docker fundamentals, from zero", desc:"Images vs containers, Dockerfile, core docker CLI. Deliverable: containerize a simple web app."},
+  {n:13, tag:"Docker", name:"Compose, volumes, ACR, deploy", desc:"Docker Compose for multi-container apps, volumes for persistence, push/pull from Azure Container Registry, then deploy the container to Azure Container Instances or App Service for Containers."}
  ]},
-{id:"b1", part:"B", chip:"PART B · 2", title:"Databases", weeks:"Week 13", color:"--p4", bg:"--p4-bg",
+{id:"b1", part:"B", chip:"PART B · 3", title:"Databases", weeks:"Week 14", color:"--p4", bg:"--p4-bg",
  why:"Genuinely new ground — and with Part A's Azure fluency already built, deploying and connecting a real database moves faster than it would have earlier.",
  items:[
-  {n:13, tag:"SQL", name:"SQL fundamentals + Azure SQL, live", desc:"CRUD, joins, indexes, basic normalization — then deploy Azure SQL Database or PostgreSQL Flexible Server, connect a small app to it, and practice backup/restore."}
+  {n:14, tag:"SQL", name:"SQL fundamentals + Azure SQL, live", desc:"CRUD, joins, indexes, basic normalization — then deploy Azure SQL Database or PostgreSQL Flexible Server, connect a small app to it, and practice backup/restore."}
  ]},
-{id:"b2", part:"B", chip:"PART B · 3", title:"Python & APIs", weeks:"Weeks 14–16", color:"--p5", bg:"--p5-bg",
+{id:"b2", part:"B", chip:"PART B · 4", title:"Python & APIs", weeks:"Weeks 15–17", color:"--p5", bg:"--p5-bg",
  why:"Real Python fundamentals first, not snippets — then APIs, then using that Python knowledge to automate exactly what you've already done by hand via the CLI.",
  items:[
-  {n:14, tag:"Python", name:"Python fundamentals, from zero", desc:"Variables, functions, control flow, lists/dicts, error handling — real small programs, not copy-pasted snippets."},
-  {n:15, tag:"APIs", name:"APIs: requests, then Azure's own", desc:"The requests library against a public API first, then Azure's REST API directly, then the Azure SDK for Python as the higher-level wrapper around that same API."},
-  {n:16, tag:"Automation", name:"Automate what you've done by hand", desc:"Rewrite the health-check / tagging / backup style tasks you've already run manually via az CLI, now as Python using the Azure SDK."}
+  {n:15, tag:"Python", name:"Python fundamentals, from zero", desc:"Variables, functions, control flow, lists/dicts, error handling — real small programs, not copy-pasted snippets."},
+  {n:16, tag:"APIs", name:"APIs: requests, then Azure's own", desc:"The requests library against a public API first, then Azure's REST API directly, then the Azure SDK for Python as the higher-level wrapper around that same API."},
+  {n:17, tag:"Automation", name:"Automate what you've done by hand", desc:"Rewrite the health-check / tagging / backup style tasks you've already run manually via az CLI, now as Python using the Azure SDK."}
  ]},
-{id:"b3", part:"B", chip:"PART B · 4", title:"IaC, Round Two", weeks:"Weeks 17–18", color:"--p6", bg:"--p6-bg",
+{id:"b3", part:"B", chip:"PART B · 5", title:"IaC, Round Two", weeks:"Weeks 18–19", color:"--p6", bg:"--p6-bg",
  why:"Terraform is the industry's most common IaC tool alongside Bicep — rebuilding the exact same network a third time makes the contrast completely concrete.",
  items:[
-  {n:17, tag:"Terraform", name:"Terraform fundamentals", desc:"Providers, resources, state, variables. Deliverable: rebuild the same three-tier network for a third time — CLI, then Bicep, now Terraform."},
-  {n:18, tag:"Terraform", name:"Modules, remote state, CI/CD", desc:"Modularize the Terraform project, configure remote state in an Azure Storage backend, and wire Terraform into the GitHub Actions pipeline from Part A."}
+  {n:18, tag:"Terraform", name:"Terraform fundamentals", desc:"Providers, resources, state, variables. Deliverable: rebuild the same three-tier network for a third time — CLI, then Bicep, now Terraform."},
+  {n:19, tag:"Terraform", name:"Modules, remote state, CI/CD", desc:"Modularize the Terraform project, configure remote state in an Azure Storage backend, and wire Terraform into the GitHub Actions pipeline from Part A."}
  ]},
-{id:"b4", part:"B", chip:"PART B · 5", title:"Kubernetes / AKS", weeks:"Weeks 19–21", color:"--p7", bg:"--p7-bg",
+{id:"b4", part:"B", chip:"PART B · 6", title:"Kubernetes / AKS", weeks:"Weeks 20–22", color:"--p7", bg:"--p7-bg",
  why:"The standard runtime for modern applications and a heavily-weighted real-world skill — makes sense now that Docker is already solid.",
  items:[
-  {n:19, tag:"Kubernetes", name:"Kubernetes fundamentals, from zero", desc:"Local Minikube cluster. Pods, Deployments, Services, YAML manifests."},
-  {n:20, tag:"AKS", name:"Azure Kubernetes Service, live", desc:"Create a real managed AKS cluster, deploy the app from Part B into it, configure ingress, ConfigMaps, and Secrets."},
-  {n:21, tag:"AKS / CI-CD", name:"Helm, and CI/CD to AKS", desc:"Package the app with Helm, then deploy to AKS automatically from the GitHub Actions pipeline built earlier."}
+  {n:20, tag:"Kubernetes", name:"Kubernetes fundamentals, from zero", desc:"Local Minikube cluster. Pods, Deployments, Services, YAML manifests."},
+  {n:21, tag:"AKS", name:"Azure Kubernetes Service, live", desc:"Create a real managed AKS cluster, deploy the app from Part B into it, configure ingress, ConfigMaps, and Secrets."},
+  {n:22, tag:"AKS / CI-CD", name:"Helm, and CI/CD to AKS", desc:"Package the app with Helm, then deploy to AKS automatically from the GitHub Actions pipeline built earlier."}
  ]},
-{id:"b5", part:"B", chip:"PART B · 6", title:"Configuration Management", weeks:"Week 22", color:"--p8", bg:"--p8-bg",
+{id:"b5", part:"B", chip:"PART B · 7", title:"Configuration Management", weeks:"Week 23", color:"--p8", bg:"--p8-bg",
  why:"Terraform provisions infrastructure; Ansible configures what's running on it — the two genuinely complement each other in real pipelines.",
  items:[
-  {n:22, tag:"Ansible", name:"Ansible fundamentals", desc:"Inventory, playbooks, modules. Deliverable: provision a VM with Terraform, then immediately auto-configure it with an Ansible playbook run right after."}
+  {n:23, tag:"Ansible", name:"Ansible fundamentals", desc:"Inventory, playbooks, modules. Deliverable: provision a VM with Terraform, then immediately auto-configure it with an Ansible playbook run right after."}
  ]},
-{id:"b6", part:"B", chip:"PART B · 7", title:"Final Wrap-Up", weeks:"Week 23", color:"--p10", bg:"--p10-bg",
+{id:"b6", part:"B", chip:"PART B · 8", title:"Final Wrap-Up", weeks:"Week 24", color:"--p10", bg:"--p10-bg",
  why:"Turning the full stretch of real work into something a recruiter can evaluate in minutes.",
  items:[
-  {n:23, tag:"Portfolio", name:"Full portfolio polish & mock interviews", desc:"Every project's README reviewed one more time, LinkedIn and resume given a final pass, and a full cold mock-interview round across every single project built across both parts."}
+  {n:24, tag:"Portfolio", name:"Full portfolio polish & mock interviews", desc:"Every project's README reviewed one more time, LinkedIn and resume given a final pass, and a full cold mock-interview round across every single project built across both parts."}
  ]}
 ];
 
@@ -282,7 +287,7 @@ let openState = {a0:true};
 
 const PART_LABELS = {
   A: {title:"Part A — AZ-104 / SC-500 Core", sub:"Weeks 1–10. Everything the two certs actually test, front-loaded and compressed. Ends with a real portfolio and applications going out."},
-  B: {title:"Part B — Extended Engineering Fundamentals", sub:"Weeks 11–23. Docker, Kubernetes, Terraform, Ansible, SQL, Python/APIs — deepened while you're already interviewing."}
+  B: {title:"Part B — Extended Engineering Fundamentals", sub:"Weeks 11–24. Shell scripting, Docker, Kubernetes, Terraform, Ansible, SQL, Python/APIs — deepened while you're already interviewing."}
 };
 
 function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(done)); }catch(e){} }
