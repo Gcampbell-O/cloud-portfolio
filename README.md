@@ -8,6 +8,7 @@ Hands-on Azure projects built while working toward AZ-104 and SC-500, documentin
 - [x] [IaC Rebuild](three-tier-network-iac/) (Bicep + CI/CD)
 - [x] [Storage, Compute & Governance](storage-compute-governance/) (App Service, lifecycle policy, Azure Policy, VMSS + Load Balancer)
 - [x] [Identity Hardening](identity-hardening/) (Conditional Access, PIM, Access Reviews, SSPR, Key Vault)
+- [x] [Monitoring & Backup](monitoring-and-backup/) (Azure Monitor, Log Analytics, KQL, Application Insights, Azure Backup)
 - [ ] Mini-SOC (Defender for Cloud + Sentinel)
 - [ ] Purview Data Protection (stretch)
 
