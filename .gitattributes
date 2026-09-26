@@ -1,0 +1,11 @@
+# Normalize line endings so Windows git and WSL git agree
+* text=auto
+*.md text eol=lf
+*.bicep text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.html text eol=lf
+
+# Keep the planning page from dominating the repo's language stats
+mastery_plan.html linguist-documentation
