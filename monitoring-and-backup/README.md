@@ -45,6 +45,16 @@ az group delete --name rg-alpha-app --yes --no-wait
 
 Note: `rg-alpha-app` isn't mentioned in the lab's own cleanup instructions, since it only exists because of the quota workaround above — both groups need deleting, not just the one the lab names. The "App Log Examiners" security group is deleted separately, at the tenant level, the same pattern as every prior mock-identity cleanup.
 
+## Teardown: the vault fights back
+
+A plain `az group delete` wasn't enough once Azure Backup was involved:
+
+- **The Recovery Services vault refused deletion while `LX-VM2` was still a protected item.** The group delete removed everything except the vault and left `rg-alpha` half-deleted, with only `rsv-alpha` inside.
+- **Always-on soft delete couldn't be disabled** (`BMSUserErrorDisablingSoftDeleteStateNotAllowed`). New vaults get this by default, so backup data can't be destroyed instantly, on purpose.
+- **Deleting the backup data via the CLI needed friendly names.** `az backup protection disable ... --delete-backup-data true` rejected the long container ID and only worked with `LX-VM2` for both the container and the item.
+- **The expected 14-day wait didn't happen.** I assumed soft-deleted data would hold the vault for about two weeks. In practice the vault deleted right after the backup data was removed, and `az resource list` on the group came back empty. A reminder to verify rather than assume in either direction.
+- **`AzureBackupRG_eastus_1` can't be deleted by hand.** Azure Backup creates that group to hold restore-point snapshots and refuses manual deletion; the service clears it itself once the backup data is gone.
+
 ## Built with
 
 Azure Monitor, Log Analytics, KQL, Application Insights, Data Collection Rules and Endpoints, Azure Monitor Agent, Network Watcher / Connection Monitor, Azure Backup, Recovery Services vaults.
