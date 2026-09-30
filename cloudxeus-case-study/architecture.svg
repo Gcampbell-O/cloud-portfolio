@@ -1,0 +1,131 @@
+<svg viewBox="0 0 980 820" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="CloudXeus network architecture: an admin reaches app VMs only through Azure Bastion's private hop, bypassing the load balancer entirely, never a public IP on the VM itself; the app tier reaches Storage through a Private Endpoint resolved by Private DNS, so traffic never crosses the public internet, while that public path is shown blocked for contrast; a second VNet with its own VM is joined to the first by non-transitive VNet Peering, using a non-overlapping address space on purpose.">
+  <title>CloudXeus network architecture — Bastion admin path bypassing the load balancer, the Private Endpoint / Private DNS path replacing public Storage access, and VNet Peering to a second network</title>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#2F6FB0"/>
+    </marker>
+  </defs>
+
+  <style>
+    .box { fill: none; stroke: currentColor; stroke-width: 1.5; }
+    .boundary { fill: none; stroke: currentColor; stroke-width: 1; stroke-dasharray: 5 4; opacity: 0.6; }
+    .lbl { font-family: -apple-system, sans-serif; font-size: 12px; fill: currentColor; }
+    .lblSm { font-family: -apple-system, sans-serif; font-size: 10.5px; fill: currentColor; opacity: 0.75; }
+    .lblTitle { font-family: -apple-system, sans-serif; font-size: 12px; font-weight: 600; fill: currentColor; }
+    .flow { stroke: currentColor; stroke-width: 1.5; fill: none; marker-end: url(#arrow); }
+    .flowAccent { stroke: #2F6FB0; stroke-width: 2; fill: none; marker-end: url(#arrowAccent); }
+    .flowBlocked { stroke: currentColor; stroke-width: 1.5; fill: none; stroke-dasharray: 3 4; opacity: 0.4; marker-end: url(#arrow); }
+  </style>
+
+  <!-- Internet / admin -->
+  <text x="40" y="30" class="lblTitle">Internet</text>
+  <line x1="30" y1="40" x2="150" y2="40" class="box" opacity="0.5"/>
+  <rect x="30" y="55" width="90" height="34" rx="4" class="box"/>
+  <text x="75" y="76" class="lbl" text-anchor="middle">Admin</text>
+
+  <rect x="30" y="500" width="120" height="34" rx="4" class="box" opacity="0.5"/>
+  <text x="90" y="521" class="lblSm" text-anchor="middle">public internet</text>
+
+  <!-- VNet boundary -->
+  <rect x="200" y="110" width="560" height="430" rx="6" class="boundary"/>
+  <text x="212" y="130" class="lblSm">VNet: vnet-cloudxeus (10.0.0.0/16)</text>
+
+  <!-- AzureBastionSubnet -->
+  <rect x="220" y="150" width="220" height="80" rx="4" class="boundary"/>
+  <text x="230" y="166" class="lblSm">AzureBastionSubnet</text>
+  <rect x="240" y="176" width="180" height="40" rx="4" class="box"/>
+  <text x="330" y="200" class="lbl" text-anchor="middle">Azure Bastion (public IP)</text>
+
+  <!-- App subnet -->
+  <rect x="220" y="260" width="280" height="260" rx="4" class="boundary"/>
+  <text x="230" y="276" class="lblSm">App subnet — NSG: allow Bastion + ILB only</text>
+
+  <rect x="250" y="292" width="220" height="36" rx="4" class="box"/>
+  <text x="360" y="310" class="lbl" text-anchor="middle">Internal Load Balancer (private IP only)</text>
+  <text x="360" y="322" class="lblSm" text-anchor="middle">+ health probe, backend pool = VM NICs</text>
+
+  <rect x="250" y="360" width="95" height="60" rx="4" class="box"/>
+  <text x="297" y="382" class="lbl" text-anchor="middle">App VM 1</text>
+  <text x="297" y="398" class="lblSm" text-anchor="middle">no public IP</text>
+  <text x="297" y="411" class="lblSm" text-anchor="middle">IIS via CSE</text>
+
+  <rect x="375" y="360" width="95" height="60" rx="4" class="box"/>
+  <text x="422" y="382" class="lbl" text-anchor="middle">App VM 2</text>
+  <text x="422" y="398" class="lblSm" text-anchor="middle">no public IP</text>
+  <text x="422" y="411" class="lblSm" text-anchor="middle">IIS via CSE</text>
+
+  <!-- Data subnet -->
+  <rect x="520" y="260" width="220" height="260" rx="4" class="boundary"/>
+  <text x="530" y="276" class="lblSm">Data subnet — NSG: allow app tier only</text>
+
+  <rect x="545" y="360" width="170" height="50" rx="4" class="box"/>
+  <text x="630" y="380" class="lbl" text-anchor="middle">Private Endpoint</text>
+  <text x="630" y="396" class="lblSm" text-anchor="middle">NIC, private IP</text>
+
+  <!-- Key Vault, inside VNet boundary, its own small box -->
+  <rect x="600" y="150" width="150" height="50" rx="4" class="box"/>
+  <text x="675" y="171" class="lbl" text-anchor="middle">Key Vault</text>
+  <text x="675" y="187" class="lblSm" text-anchor="middle">VM admin secrets</text>
+
+  <!-- Outside VNet: Storage + Private DNS -->
+  <rect x="800" y="360" width="150" height="50" rx="4" class="box"/>
+  <text x="875" y="380" class="lbl" text-anchor="middle">Storage Account</text>
+  <text x="875" y="396" class="lblSm" text-anchor="middle">public access disabled</text>
+
+  <rect x="800" y="260" width="150" height="50" rx="4" class="box"/>
+  <text x="875" y="280" class="lbl" text-anchor="middle">Private DNS Zone</text>
+  <text x="875" y="296" class="lblSm" text-anchor="middle">privatelink.blob...</text>
+
+  <rect x="820" y="500" width="130" height="34" rx="4" class="box" opacity="0.5"/>
+  <text x="885" y="521" class="lblSm" text-anchor="middle">public endpoint (blocked)</text>
+
+  <!-- Flows -->
+  <!-- admin to bastion -->
+  <path d="M120,72 C180,72 180,196 240,196" class="flow"/>
+  <text x="175" y="66" class="lblSm">RDP/SSH over TLS (443)</text>
+
+  <!-- bastion to VMs, private hop — routed down the left margin so it visibly clears the ILB box, not through it -->
+  <path d="M270,216 L270,340 L297,340 L297,360" class="flowAccent"/>
+  <path d="M270,340 L235,340 L235,440 L422,440 L422,420" class="flowAccent"/>
+  <text x="475" y="440" class="lblSm" fill="#2F6FB0">private RDP/SSH to both VMs — bypasses the ILB entirely</text>
+
+  <!-- ILB to VMs -->
+  <line x1="320" y1="328" x2="297" y2="360" class="flow"/>
+  <line x1="400" y1="328" x2="422" y2="360" class="flow"/>
+
+  <!-- VMs to private endpoint -->
+  <path d="M345,390 C450,390 480,385 545,385" class="flowAccent"/>
+  <path d="M470,390 L545,390" class="flowAccent"/>
+  <text x="440" y="345" class="lblSm" fill="#2F6FB0">app traffic to Storage</text>
+
+  <!-- private endpoint to storage, the highlighted private link -->
+  <path d="M715,382 L800,382" class="flowAccent"/>
+  <text x="720" y="345" class="lblSm" fill="#2F6FB0">Private Link — Microsoft backbone, not internet</text>
+
+  <!-- private DNS resolves to private endpoint -->
+  <path d="M800,300 C760,300 700,340 660,360" class="flow" stroke-dasharray="3 3"/>
+  <text x="700" y="325" class="lblSm">resolves to 10.x.x.x</text>
+
+  <!-- blocked public path -->
+  <path d="M860,410 C860,460 885,470 885,500" class="flowBlocked"/>
+
+  <!-- key vault to VMs, secrets at deploy time -->
+  <path d="M600,180 C500,180 420,250 400,360" class="flow" stroke-dasharray="3 3" opacity="0.6"/>
+  <text x="500" y="230" class="lblSm">secrets, deploy-time only</text>
+
+  <!-- Second VNet, peered -->
+  <rect x="200" y="620" width="320" height="150" rx="6" class="boundary"/>
+  <text x="212" y="640" class="lblSm">VNet2: vnet-cloudxeus-peer (10.1.0.0/16)</text>
+
+  <rect x="230" y="660" width="150" height="60" rx="4" class="box"/>
+  <text x="305" y="686" class="lbl" text-anchor="middle">Peer VM</text>
+  <text x="305" y="702" class="lblSm" text-anchor="middle">no public IP</text>
+
+  <!-- peering connector, bidirectional, styled distinctly from the directional flows -->
+  <line x1="360" y1="540" x2="360" y2="620" stroke="currentColor" stroke-width="2" marker-start="url(#arrow)" marker-end="url(#arrow)"/>
+  <text x="375" y="585" class="lblSm">VNet Peering</text>
+  <text x="375" y="598" class="lblSm">non-transitive, non-overlapping ranges</text>
+</svg>

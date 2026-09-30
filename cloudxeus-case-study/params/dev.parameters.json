@@ -1,0 +1,110 @@
+ {
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "linuxWebConfig": {
+      "value": {
+        "baseName": "test-app",
+        "vmSize": "Standard_D2ads_v7",
+        "count": 1,
+        "adminUsername": "linuxadmin"
+      }
+    },
+    "lbName": {
+      "value": "ilb-dev-eus-01"
+    },
+    "bastion": {
+      "value": {
+        "pipName": "pip-bas-dev-eus-01",
+        "name": "bas-dev-eus-01"
+      }
+    },
+    "winWebConfig": {
+      "value": {
+        "vmSize": "Standard_D2ads_v7",
+        "adminUsername": "azureadmin",
+        "baseName": "dev-web",
+        "count": 2,
+        "scriptUri": "REPLACE_WITH_SAS_URL"
+      }
+    },
+    "winWebAdminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/089c1b7d-dac0-40b1-86bc-ea5526977d75/resourceGroups/rg-cloudxeus-dev/providers/Microsoft.KeyVault/vaults/kv-cloudxeus-dev"
+        },
+        "secretName": "vmAdminPassword"
+      }
+    },
+    "linuxWebAdminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/089c1b7d-dac0-40b1-86bc-ea5526977d75/resourceGroups/rg-cloudxeus-dev/providers/Microsoft.KeyVault/vaults/kv-cloudxeus-dev"
+        },
+        "secretName": "vmAdminPassword"
+      }
+    },
+    "location": {
+      "value": "eastus"
+    },
+    "storageAccountName": {
+      "value": "strgdevxeus"
+    },
+    "vnet": {
+      "value": {
+        "name": "vnet-dev-eus",
+        "addressprefixes": [
+          "10.0.0.0/16"
+        ],
+        "subnets": [
+          {
+            "name": "subnet-dev-eus-web-01",
+            "addressPrefix": "10.0.1.0/24"
+          },
+          {
+            "name": "subnet-dev-eus-db-01",
+            "addressPrefix": "10.0.2.0/24"
+          },
+          {
+            "name": "AzureBastionSubnet",
+            "addressPrefix": "10.0.3.0/24"
+          }
+        ]
+      }
+    },
+    "testvnet": {
+      "value": {
+        "name": "vnet-test-eus",
+        "addressprefixes": [
+          "10.1.0.0/16"
+        ],
+        "subnets": [
+          {
+            "name": "subnet-test-eus-app",
+            "addressPrefix": "10.1.0.0/24"
+          }
+        ]
+      }
+    },
+    "nsg": {
+      "value": {
+        "name": "nsg-dev-shared-eus",
+        "rules": [
+          {
+            "name": "Allow-RDP-admin",
+            "properties": {
+              "description": "Allow RDP from admin IP",
+              "priority": 400,
+              "direction": "Inbound",
+              "access": "Allow",
+              "protocol": "Tcp",
+              "sourcePortRange": "*",
+              "destinationPortRange": "3389",
+              "sourceAddressPrefix": "172.83.192.36/32",
+              "destinationAddressPrefix": "*"
+            }
+          }
+        ]
+      }
+    }
+  }
+}
