@@ -1,0 +1,9 @@
+﻿NSG asclab-nsg, BEFORE just-in-time access (2026-10-11T15:07:13Z):
+  500  AllowRDP  Allow  3389  from *  to *
+  501  AllowSSH  Allow  22    from *  to *
+
+NSG asclab-nsg, AFTER just-in-time access (2026-10-11T15:15:45Z):
+  1000 MicrosoftDefenderForCloud-JITRule (asclab-linux)  Deny   22,3389,5985,5986  from *  to 192.168.0.5
+  1001 MicrosoftDefenderForCloud-JITRule (asclab-win)    Deny   22,3389,5985,5986  from *  to 192.168.0.4
+  1002 AllowRDP  Allow  3389  from *  to *   (re-prioritized by JIT from 500)
+  1003 AllowSSH  Allow  22    from *  to *   (re-prioritized by JIT from 501)
