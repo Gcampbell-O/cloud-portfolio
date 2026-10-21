@@ -6,6 +6,3 @@
 *.yml text eol=lf
 *.yaml text eol=lf
 *.html text eol=lf
-
-# Keep the planning page from dominating the repo's language stats
-mastery_plan.html linguist-documentation

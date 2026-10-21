@@ -1,6 +1,6 @@
 # Monitoring & Backup (Azure Monitor, Log Analytics, KQL, Azure Backup)
 
-Working through Microsoft's own official hands-on lab, [azure-monitor-lab](https://github.com/microsoft/azure-monitor-lab), end to end — deploying a real observability stack across a Windows and a Linux VM, two web apps, and a SQL database, then closing two remaining gaps the lab doesn't cover: deliberate KQL practice and Azure Backup.
+A full observability stack across a Windows and a Linux VM, two web apps, and a SQL database, built on Microsoft's official [azure-monitor-lab](https://github.com/microsoft/azure-monitor-lab) and extended past it with KQL analysis on live data and Azure Backup.
 
 ## What's in it
 

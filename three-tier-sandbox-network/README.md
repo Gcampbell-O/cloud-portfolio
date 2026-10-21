@@ -1,6 +1,6 @@
 # Three-Tier Sandbox Network
 
-A segmented Azure network built entirely by hand with the Azure CLI — no public IP anywhere except the management entry point — to practice the core patterns behind AZ-104 and SC-500 before automating any of it with Bicep.
+A segmented Azure network built entirely by hand with the Azure CLI — no public IP anywhere except the management entry point — applying core production patterns (segmentation, private-only access, least privilege) before automating it with Bicep.
 
 ![Architecture diagram](architecture.svg)
 
@@ -45,4 +45,4 @@ az ad user delete --id "reader@<tenant-domain>"
 
 ## Built with
 
-Azure CLI only — no portal clicking, no IaC yet. That's deliberate: this project is the "do it by hand" rep before Project 2 rebuilds this exact network in Bicep with a CI/CD pipeline.
+Azure CLI only — no portal clicking, no IaC yet. That's deliberate: building it by hand first, then rebuilding this exact network as Bicep with a CI/CD pipeline in [IaC Rebuild](../three-tier-network-iac/).

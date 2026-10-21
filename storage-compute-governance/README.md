@@ -1,6 +1,6 @@
 # Storage, Compute & Governance
 
-Rounding out AZ-104's storage and compute domains beyond the VM/private-endpoint work from Projects 1 and 2, plus a first real pass at Azure governance: Policy, tags, and the RBAC/Policy distinction, all tested live rather than just configured and left alone.
+Extends the VM and private-endpoint work from the [three-tier network](../three-tier-sandbox-network/) into PaaS compute, storage lifecycle, scale-out IaaS, and Azure governance: Policy, tags, and the RBAC/Policy distinction, all tested live rather than just configured and left alone.
 
 ## What's in it
 
@@ -21,7 +21,7 @@ Rounding out AZ-104's storage and compute domains beyond the VM/private-endpoint
 
 ## Design decisions
 
-- **Allowed locations, not allowed blindly:** the Policy assignment scopes strictly to the regions actually used (`eastus`, `centralus`), rather than being left wide open — same least-privilege instinct as the RBAC decisions in Projects 1/2, applied to governance instead of access.
+- **Allowed locations, not allowed blindly:** the Policy assignment scopes strictly to the regions actually used (`eastus`, `centralus`), rather than being left wide open — same least-privilege instinct as the RBAC decisions in the three-tier network projects, applied to governance instead of access.
 - **Health probe deliberately separated from "it just works":** rather than trusting the default probeless setup, a real probe was added and then deliberately broken to prove the failure mode understood, not just described.
 
 ## Cost and teardown
