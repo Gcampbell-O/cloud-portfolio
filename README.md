@@ -1,6 +1,6 @@
 # Gbolahan Campbell, Azure Cloud Administrator
 
-**Microsoft Certified: Azure Administrator Associate (AZ-104)** · Azure Security, Compliance & Identity Fundamentals (SC-900) · Azure Fundamentals (AZ-900)
+**Microsoft Certified: Azure Administrator Associate (AZ-104)** ([verify](https://learn.microsoft.com/api/credentials/share/en-gb/GbolahanCampbell-3034/2B98767CC77853E5?sharingId=F63B449FC34B1196)) · Azure Security, Compliance & Identity Fundamentals (SC-900) · Azure Fundamentals (AZ-900)
 
 I design, build, secure and troubleshoot Azure environments, and I document every one end to end. This repo holds seven hands-on Azure engineering projects: networking, infrastructure as code with CI/CD, identity security, monitoring and backup, governance, and a working security operations setup that detected and shut down a live brute-force attack.
 
