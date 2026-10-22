@@ -6,6 +6,8 @@ I design, build, secure and troubleshoot Azure environments, and I document ever
 
 Each project covers **what was built, the design decisions, what broke and how it was fixed, and what it cost to run.** Every fix is backed by real error text or live state, never guesswork.
 
+**Connect:** [LinkedIn](https://www.linkedin.com/in/gbolahan-campbell-88399642b/)
+
 ---
 
 ## Featured: catching a real attack
