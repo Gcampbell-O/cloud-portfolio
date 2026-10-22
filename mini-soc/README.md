@@ -4,6 +4,8 @@ I put two VMs on the internet with SSH and RDP open to everyone, watched real at
 
 The environment is a lean version of Microsoft's official [Defender for Cloud lab](https://github.com/Azure/Microsoft-Defender-for-Cloud/tree/main/Labs/Modules). The attack data is real, from about 14 hours of exposure on 2026-10-10/11. Nothing was simulated.
 
+![SSH attack timeline: hourly sshd log lines overnight, then 10-minute buckets dropping to zero after just-in-time access was enabled at 15:15:45 UTC](attack-timeline.png)
+
 ## The result
 
 | | |
@@ -141,6 +143,7 @@ All public IP addresses in [`evidence/`](evidence/) have their last octet masked
 
 | File | What it shows |
 |---|---|
+| [`attack-timeline.png`](attack-timeline.png) (in `mini-soc/`) | The chart at the top of this page, built from `ssh-attempts-per-hour.csv` and `jit-before-after-10min.csv` |
 | `ssh-attack-totals.csv` | Final totals: guesses, invalid-user probes, distinct IPs, successful logins, first and last attack |
 | `jit-before-after-10min.csv` | The 10-minute buckets either side of JIT |
 | `nsg-before-after-jit.txt` | The NSG rules before and after JIT |
