@@ -2,7 +2,7 @@
 
 **Microsoft Certified: Azure Administrator Associate (AZ-104)** ([verify](https://learn.microsoft.com/api/credentials/share/en-gb/GbolahanCampbell-3034/2B98767CC77853E5?sharingId=F63B449FC34B1196)) · Azure Security, Compliance & Identity Fundamentals (SC-900) · Azure Fundamentals (AZ-900)
 
-I design, build, secure and troubleshoot Azure environments, and I document every one end to end. This repo holds seven hands-on Azure engineering projects: networking, infrastructure as code with CI/CD, identity security, monitoring and backup, governance, and a working security operations setup that detected and shut down a live brute-force attack.
+I design, build, secure and troubleshoot Azure environments, and I document every one end to end. This repo holds eight hands-on Azure engineering projects: networking, infrastructure as code with CI/CD, identity security, monitoring and backup, governance, a Java app on App Service with passwordless Azure SQL access, and a working security operations setup that detected and shut down a live brute-force attack.
 
 Each project covers **what was built, the design decisions, what broke and how it was fixed, and what it cost to run.** Every fix is backed by real error text or live state, never guesswork.
 
@@ -21,6 +21,7 @@ I exposed two VMs to the internet on purpose. Within about 20 minutes, real atta
 |---|---|---|
 | [**Mini-SOC**](mini-soc/) | Defender for Cloud, Microsoft Sentinel, KQL detections, incident triage, JIT access, Azure Monitor Agent and data collection rules | A live SSH brute-force attack detected, triaged and stopped |
 | [**CloudXeus Case Study**](cloudxeus-case-study/) | Modular Bicep for a full environment: peered VNets, Azure Bastion, an internal load balancer, IIS via Custom Script Extension, Key Vault secret references | A repeatable dev environment from code, every bug fixed from real deployment errors |
+| [**Clinic API: App Service + Azure SQL**](clinic-api-lab/) | Spring Boot REST API on App Service (Linux, Java 17); Azure SQL with Entra-only authentication; **managed identity** with a read-only database user; parameterized queries; config from app settings | An app reading from SQL with no password anywhere, proven with a record that only exists in the database |
 | [**IaC Rebuild: Three-Tier Network**](three-tier-network-iac/) | Bicep plus a **GitHub Actions** pipeline using **OIDC federated credentials** (no stored secrets); `what-if` on pull request, deploy on merge | 16 resources deployed from one file and one push, with least-privilege pipeline access |
 | [**Three-Tier Sandbox Network**](three-tier-sandbox-network/) | Segmented VNet (web, app, data, management), NSG deny-by-default between tiers, Bastion-only access, private endpoint plus private DNS for storage, scoped RBAC | No public IP on any workload, and storage reachable only privately |
 | [**Identity Hardening**](identity-hardening/) | Entra ID: break-glass account, Conditional Access (report-only before enforcing), PIM just-in-time roles, Access Reviews, SSPR, Key Vault with RBAC | A deliberate Conditional Access lockout diagnosed from sign-in logs and recovered |
