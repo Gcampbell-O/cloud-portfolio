@@ -6,8 +6,8 @@ param location string
 
 
 resource sa 'Microsoft.Storage/storageAccounts@2024-01-01' = {
-  // checkov:skip=CKV_AZURE_59: Accepted risk. VMs download the IIS script from this account; public network access stays until a private endpoint is added
-  // checkov:skip=CKV_AZURE_36: Trusted-services bypass only applies once network rules exist (see CKV_AZURE_59)
+  // checkov:skip=CKV_AZURE_35: Accepted risk. VMs download the IIS script from this account, so the default network rule stays Allow until a private endpoint is added
+  // checkov:skip=CKV_AZURE_206: Accepted risk for a lab. LRS keeps cost down; production would use ZRS or GRS
   name: name
   location: location
   sku: {
@@ -27,7 +27,6 @@ resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2024-01-01'
 }
 
 resource scriptsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2024-01-01' = {
-  // checkov:skip=CKV_AZURE_34: False positive. publicAccess is explicitly 'None'
   parent: blobService
   name: 'scripts'
   properties: {
