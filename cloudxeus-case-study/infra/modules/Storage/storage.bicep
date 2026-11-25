@@ -6,12 +6,19 @@ param location string
 
 
 resource sa 'Microsoft.Storage/storageAccounts@2024-01-01' = {
+  // checkov:skip=CKV_AZURE_35: Accepted risk. VMs download the IIS script from this account, so the default network rule stays Allow until a private endpoint is added
+  // checkov:skip=CKV_AZURE_206: Accepted risk for a lab. LRS keeps cost down; production would use ZRS or GRS
   name: name
   location: location
   sku: {
     name: 'Standard_LRS'
   }
   kind: 'StorageV2'
+  properties: {
+    supportsHttpsTrafficOnly: true
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: false
+  }
 }
 
 resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2024-01-01' = {

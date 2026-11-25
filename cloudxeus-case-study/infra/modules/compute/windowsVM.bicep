@@ -56,6 +56,8 @@ resource nics 'Microsoft.Network/networkInterfaces@2024-01-01' = [for (nicName,i
 }]
 
 resource vms 'Microsoft.Compute/virtualMachines@2023-09-01' = [ for (vmName,i) in vmNames:{
+  // checkov:skip=CKV_AZURE_178: False positive. This is a Windows VM; the SSH-key check only applies to Linux
+  // checkov:skip=CKV_AZURE_50: Accepted risk. The Custom Script Extension is how IIS is installed; its script URL stays in protectedSettings
   name: vmName
   location: location
   properties: {
@@ -66,6 +68,12 @@ resource vms 'Microsoft.Compute/virtualMachines@2023-09-01' = [ for (vmName,i) i
       computerName: vmName
       adminUsername: adminUsername
       adminPassword: adminPassword
+      windowsConfiguration: {
+        enableAutomaticUpdates: true
+        patchSettings: {
+          patchMode: 'AutomaticByOS'
+        }
+      }
     }
     storageProfile: {
       imageReference: {
@@ -103,12 +111,11 @@ resource cse 'Microsoft.Compute/virtualMachines/extensions@2023-09-01' = [for (v
     type: 'CustomScriptExtension'
     typeHandlerVersion: '1.10'
     autoUpgradeMinorVersion: true
-    settings: {
+    // fileUris holds a SAS token, so it goes in protectedSettings (encrypted, not visible to VM readers)
+    protectedSettings: {
       fileUris: [
         scriptUri
       ]
-    }
-    protectedSettings: {
       commandToExecute: scriptCommand
     }
   }
